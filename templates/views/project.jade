@@ -1,0 +1,41 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/works') &larr; back to the works
+			hr
+			if !data.project
+				h2 Invalid Project.
+			else
+				header
+					h1= data.project.title
+					h5 Posted 
+						if data.project.publishedDate
+							| on #{data.project._.publishedDate.format('MMMM Do, YYYY')} 
+						if data.project.categories && data.project.categories.length
+							| in 
+							each cat, cat_i in data.project.categories
+								a(href='/works/' + cat.key)= cat.name
+								if cat_i < data.project.categories.length - 1
+									| , 
+								else
+									|  
+						if data.project.author
+							| by #{data.project.author.name.first}
+				.project
+					if data.project.keyImage.exists
+						.image-wrap: img(src=data.project._.keyImage.fit(750,450)).img-responsive
+					!= data.project.content.full
+
+	.container
+		if data.project.gallery.exists
+			.row.gallery-images
+				if data.project.keyImage.exists
+					.col-sm-4.col-md-4.gallery-image: img(src=data.project._.keyImage.limit(680,680)).img-rounded
+					.col-sm-8.col-md-8: .row
+						each image in data.project.gallery.images
+							.col-xs-4.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
+				else
+					each image in data.project.gallery.images
+						.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded

@@ -1,0 +1,29 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/activities') &larr; back to the activities
+			hr
+			if !data.publication
+				h2 Invalid Project.
+			else
+				header
+					h1= data.publication.title
+					h5 Posted 
+						if data.publication.publishedDate
+							| on #{data.publication._.publishedDate.format('MMMM Do, YYYY')} 
+						if data.publication.categories && data.publication.categories.length
+							| in 
+							each cat, cat_i in data.publication.categories
+								a(href='/activities/' + cat.key)= cat.name
+								if cat_i < data.publication.categories.length - 1
+									| , 
+								else
+									|  
+						if data.publication.author
+							| by #{data.publication.author.name.first}
+				.publication
+					if data.publication.image.exists
+						.image-wrap: img(src=data.publication._.image.fit(750,450)).img-responsive
+					!= data.publication.content.full

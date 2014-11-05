@@ -1,0 +1,29 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/activities') &larr; back to the activities
+			hr
+			if !data.activity
+				h2 Invalid Activity.
+			else
+				header
+					h1= data.activity.title
+					h5 Posted 
+						if data.activity.publishedDate
+							| on #{data.activity._.publishedDate.format('MMMM Do, YYYY')} 
+						if data.activity.categories && data.activity.categories.length
+							| in 
+							each cat, cat_i in data.activity.categories
+								a(href='/activities/' + cat.key)= cat.name
+								if cat_i < data.activity.categories.length - 1
+									| , 
+								else
+									|  
+						if data.activity.author
+							| by #{data.activity.author.name.first}
+				.activity
+					if data.activity.image.exists
+						.image-wrap: img(src=data.activity._.image.fit(750,450)).img-responsive
+					!= data.activity.content.full
