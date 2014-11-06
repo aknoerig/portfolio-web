@@ -1,5 +1,15 @@
 extends ../layouts/default
 
+mixin project(project)
+	.col-sm-6.col-md-4
+		.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+		.thumbnail
+			img(src=project._.keyImage.fit(400,300) alt=project.title)
+			.caption
+				h2= project.title
+				p= 	project.innovation
+				p.read-more: a(href='/works/project/' + project.slug) Read more...
+
 mixin project-list(project)
 	.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
 		h2: a(href='/works/project/' + project.slug)= project.title
@@ -23,23 +33,23 @@ mixin project-list(project)
 			p.read-more: a(href='/works/project/' + project.slug) Read more...
 
 
-mixin project(project)
-	.col-sm-6.col-md-4
-		.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
-		.thumbnail
-			img(src=project._.keyImage.fit(400,300) alt=project.title)
-			.caption
-				h2= project.title
-				p= 	project.innovation
-				p.read-more: a(href='/works/project/' + project.slug) Read more...
-
 block intro
-	.container
+	.container#intro
 		h1= data.category ? data.category.name : 'Works'
 
 block content
+
+	.container
+		ul.filter
+			li
+				a(href='/works', class=!data.category ? 'active' : false) All
+			each cat in data.categories
+				li
+					a(href='/works/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= cat.name
+			
+
 	.container: .row
-		.col-sm-8.col-md-9
+		
 			if filters.category && !data.category
 				h3.text-muted Invalid Category.
 			else
@@ -76,14 +86,6 @@ block content
 						h3.text-muted There are no projects in the category #{data.category.name}.
 					else
 						h3.text-muted There are no projects yet.
-		
-		if data.categories.length
-			.col-sm-4.col-md-3
-				h2 Categories
-				.list-group(style='margin-top: 70px;')
-					a(href='/works', class=!data.category ? 'active' : false).list-group-item All Categories
-					each cat in data.categories
-						a(href='/works/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 
 block js
 

@@ -63,24 +63,34 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 
 
 /* Content */
-.filter-group {
+
+.filter {
   background: #FFF;
   margin: 0;
   width: 100%;
-}
-.filter {
-  font-family: 'CorbelRegular', 'Corbel', sans-serif;
-  font-size: 10pt;
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 0px 2px;
-  margin: 10px 15px 10px 0px;
-  color: #333333;
   border: none;
-  background: none;
-}
-.filter.active a {
-  border-bottom: 1px solid;
+  box-shadow: none;
+
+  li {
+    font-family: 'CorbelRegular', 'Corbel', sans-serif;
+    font-size: 10pt;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 0px 2px;
+    margin: 10px 15px 10px 0px;
+    color: #333333;
+    border: none;
+    background: none;
+  }
+
+  a {
+    border: none;
+    background: none;
+  }
+
+  a.active {
+    border-bottom: 1px solid;
+  }
 }
 
 #body {
