@@ -26,8 +26,10 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': 'q!ckvQh`v>ku}}.H[<m@abwXs9?r<g@/f4zdV{d6pyy3IrBoC<]`hvSds$w[N9RW'
+	'cookie secret': 'q!ckvQh`v>ku}}.H[<m@abwXs9?r<g@/f4zdV{d6pyy3IrBoC<]`hvSds$w[N9RW',
 
+	'ga property': process.env.GA_PROPERTY,
+	'ga domain': process.env.GA_DOMAIN
 });
 
 // Load your project's Models
@@ -42,7 +44,9 @@ keystone.set('locals', {
 	_: require('underscore'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
-	editable: keystone.content.editable
+	editable: keystone.content.editable,
+	ga_property: keystone.get('ga property'),
+	ga_domain: keystone.get('ga domain')
 });
 
 // Load your project's Routes
