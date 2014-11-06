@@ -14,6 +14,6 @@ PublicationCategory.add({
 	name: { type: String, required: true }
 });
 
-PublicationCategory.relationship({ ref: 'Publication', path: 'categories' });
+PublicationCategory.relationship({ ref: 'Publication', path: 'category' });
 
 PublicationCategory.register();

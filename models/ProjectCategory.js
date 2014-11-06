@@ -14,6 +14,6 @@ ProjectCategory.add({
 	name: { type: String, required: true }
 });
 
-ProjectCategory.relationship({ ref: 'Project', path: 'categories' });
+ProjectCategory.relationship({ ref: 'Project', path: 'category' });
 
 ProjectCategory.register();

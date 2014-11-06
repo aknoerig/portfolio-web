@@ -14,7 +14,7 @@ var Publication = new keystone.List('Publication', {
 Publication.add({
 	title: { type: String, required: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	categories: { type: Types.Relationship, ref: 'PublicationCategory', many: true },
+	category: { type: Types.Relationship, ref: 'PublicationCategory' },
 	authors: { type: String },
 	citation: { type: String },
 	year: { type: Types.Date, index: true },

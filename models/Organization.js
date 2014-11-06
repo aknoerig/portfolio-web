@@ -12,6 +12,7 @@ var Organization = new keystone.List('Organization', {
 
 Organization.add({
 	name: { type: String, required: true },
+	logo: { type: Types.CloudinaryImage },
 	link: { type: Types.Url }
 });
 

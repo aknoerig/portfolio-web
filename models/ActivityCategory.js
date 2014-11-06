@@ -14,6 +14,6 @@ ActivityCategory.add({
 	name: { type: String, required: true }
 });
 
-ActivityCategory.relationship({ ref: 'Activity', path: 'categories' });
+ActivityCategory.relationship({ ref: 'Activity', path: 'category' });
 
 ActivityCategory.register();

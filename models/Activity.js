@@ -14,7 +14,7 @@ var Activity = new keystone.List('Activity', {
 Activity.add({
 	title: { type: String, required: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	categories: { type: Types.Relationship, ref: 'ActivityCategory', many: true },
+	category: { type: Types.Relationship, ref: 'ActivityCategory' },
 	date: { type: Types.Date, index: true },
 	place: { type: String },
 	placeLink: { type: Types.Url },
