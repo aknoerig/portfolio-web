@@ -1,6 +1,6 @@
 extends ../layouts/default
 
-mixin project(project)
+mixin project-list(project)
 	.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
 		h2: a(href='/works/project/' + project.slug)= project.title
 		p.lead.text-muted Posted 
@@ -22,6 +22,17 @@ mixin project(project)
 		if project.content.extended
 			p.read-more: a(href='/works/project/' + project.slug) Read more...
 
+
+mixin project(project)
+	.col-sm-6.col-md-4
+		.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+		.thumbnail
+			img(src=project._.keyImage.fit(400,300) alt=project.title)
+			.caption
+				h2= project.title
+				p= 	project.innovation
+				p.read-more: a(href='/works/project/' + project.slug) Read more...
+
 block intro
 	.container
 		h1= data.category ? data.category.name : 'Works'
@@ -33,7 +44,7 @@ block content
 				h3.text-muted Invalid Category.
 			else
 				if data.projects.results.length
-					if data.projects.totalPages > 1
+					//-if data.projects.totalPages > 1
 						h4.text-weight-normal Showing 
 							strong #{data.projects.first}
 							|  to 
@@ -41,7 +52,7 @@ block content
 							|  of 
 							strong #{data.projects.total}
 							|  projects.
-					else
+					//-else
 						h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
 					.works
 						each project in data.projects.results
@@ -73,3 +84,7 @@ block content
 					a(href='/works', class=!data.category ? 'active' : false).list-group-item All Categories
 					each cat in data.categories
 						a(href='/works/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+
+block js
+
+	script(src='/js/lib/bootstrap/.js')
