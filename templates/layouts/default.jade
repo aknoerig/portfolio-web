@@ -10,40 +10,34 @@ html
 		meta(http-equiv="X-UA-Compatible" content="IE=edge")
 
 		title= title || 'André Knörig'
-		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
-		link(rel="shortcut icon" href="/images/favicons/favicon.ico")
-		link(rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png")
-		link(rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png")
-		link(rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png")
-		link(rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png")
-		link(rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png")
-		link(rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png")
-		link(rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png")
-		link(rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png")
-		link(rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png")
-		link(rel="icon" type="image/png" href="/images/favicons/favicon-192x192.png" sizes="192x192")
-		link(rel="icon" type="image/png" href="/images/favicons/favicon-160x160.png" sizes="160x160")
-		link(rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96")
-		link(rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16")
-		link(rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32")
-		meta(name="msapplication-TileColor" content="#cccccc")
-		meta(name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png")
-		meta(name="msapplication-config" content="/images/favicons/browserconfig.xml")
+		meta(name="description", content="")
+		meta(name="keywords", content="André Knörig, Andre Knoerig, interaction design, interface design, ux, consulting, user experience, technologies, physical computing")
 
-		//- Customise the stylesheet for your site by editing /public/styles/site.less
-		//- All .less files will be automatically compiled and minified in production.
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+		link(rel="apple-touch-icon" sizes="57x57" href="/images/favicons/favicon-57.png")
+		link(rel="apple-touch-icon" sizes="114x114" href="/images/favicons/favicon-114.png")
+		link(rel="apple-touch-icon" sizes="72x72" href="/images/favicons/favicon-72.png")
+		link(rel="apple-touch-icon" sizes="144x144" href="/images/favicons/favicon-144.png")
+		link(rel="apple-touch-icon" sizes="60x60" href="/images/favicons/favicon-60.png")
+		link(rel="apple-touch-icon" sizes="120x120" href="/images/favicons/favicon-120.png")
+		link(rel="apple-touch-icon" sizes="76x76" href="/images/favicons/favicon-76.png")
+		link(rel="apple-touch-icon" sizes="152x152" href="/images/favicons/favicon-152.png")
+		link(rel="apple-touch-icon" sizes="180x180" href="/images/favicons/favicon-180.png")
+		link(rel="icon" type="image/png" href="/images/favicons/favicon-192.png" sizes="192x192")
+		link(rel="icon" type="image/png" href="/images/favicons/favicon-160.png" sizes="160x160")
+		link(rel="icon" type="image/png" href="/images/favicons/favicon-96.png" sizes="96x96")
+		link(rel="icon" type="image/png" href="/images/favicons/favicon-16.png" sizes="16x16")
+		link(rel="icon" type="image/png" href="/images/favicons/favicon-32.png" sizes="32x32")
+		meta(name="msapplication-TileColor" content="#333333")
+		meta(name="msapplication-TileImage" content="/images/favicons/favicon-144-trans.png")
+		meta(name="msapplication-config" content="/images/favicons/browserconfig.xml")
+		meta(property="og:image" content="http://andreknoerig.de/images/favicons/favicon-256.png")
+
 		link(href="/styles/site.min.css",rel="stylesheet")
 
-		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
+			//- This file provides the default styling for the KeystoneJS Content Editor
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
-
-		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-		//- Safely remove this block if you are not targeting IE8
-		//-[if lt IE 9]
-			script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")
-			script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")
-		//-[endif]
 
 		//- Include template-specific stylesheets by extending the css block
 		block css
@@ -108,30 +102,27 @@ html
 
 		//- JAVASCRIPT
 
-		//- jQuery 1.11.1 is included by default, and required by both Bootstrap
-		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-		//- you can upgrade to 2.1.1 (also bundled) for better performance.
-		script(src='/js/lib/jquery/jquery-1.11.1.min.js')
+		//- script(src='/js/lib/jquery/jquery-2.1.1.min.js')
+		script(src="//code.jquery.com/jquery-latest.min.js")
 
-		//- Customise which Bootstrap javascript files are served by including
-		//- them specifically here, instead of bootstrap-3.2.0.min.js
-		script(src='/js/lib/bootstrap/bootstrap-3.2.0.min.js')
+		//- script(src='/js/lib/bootstrap/bootstrap-3.2.0.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
 
-		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
-		//- which generate links to edit content for users who can access Keystone
 		if user && user.canAccessKeystone
+			//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
+			//- which generate links to edit content for users who can access Keystone
 			script(src='/keystone/js/content/editor.js')
 
 		//- Add scripts that are globally required by your site here.
+		if env == 'production'
+		script.
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', '#{ga_property}', '#{ga_domain}');
+			ga('send', 'pageview');
 
 		//- Include template-specific javascript files by extending the js block
 		block js
 
-			if env == 'production'
-			script.
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-				ga('create', '#{ga_property}', '#{ga_domain}');
-				ga('send', 'pageview');
