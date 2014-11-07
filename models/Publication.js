@@ -21,7 +21,7 @@ Publication.add({
 	featured: { type: Boolean, default: false, index: true },
 	file: { type: Types.S3File },
 	link: { type: Types.Url },
-	image: { type: Types.CloudinaryImage },
+	keyImage: { type: Types.CloudinaryImage },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }

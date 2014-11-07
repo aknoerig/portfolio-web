@@ -1,29 +1,32 @@
 extends ../layouts/default
 
 block content
-	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
-		article
-			p: a(href='/activities') &larr; back to the activities
-			hr
-			if !data.activity
-				h2 Invalid Activity.
-			else
-				header
-					h1= data.activity.title
-					h5 Posted 
-						if data.activity.publishedDate
-							| on #{data.activity._.publishedDate.format('MMMM Do, YYYY')} 
-						if data.activity.categories && data.activity.categories.length
-							| in 
-							each cat, cat_i in data.activity.categories
-								a(href='/activities/' + cat.key)= cat.name
-								if cat_i < data.activity.categories.length - 1
-									| , 
-								else
-									|  
-						if data.activity.author
-							| by #{data.activity.author.name.first}
-				.activity
-					if data.activity.image.exists
-						.image-wrap: img(src=data.activity._.image.fit(750,450)).img-responsive
+	.container: .row
+		.col-sm-3.col-md-3
+			aside
+				.meta
+					//- if data.activity.category == "Consulting"
+					//- if data.activity.category
+							| A 
+							a(href='/activities/' + data.activity.category.key)= data.activity.category.name 
+							|  activity
+							br
+					
+				if data.activity.link
+					.link
+						a(href=data.activity.link, target="_blank")= data.activity._.link.format()
+		.col-sm-8.col-sm-offset-1.col-md-9.col-md-offset-0
+			article
+				//-p: a(href='/activities') &larr; back to the activities
+				//-hr
+				if !data.activity
+					h2 Invalid Activity.
+				else
+					header
+						h1= data.activity.title
+
+					if data.activity.keyImage.exists
+						.image-wrap: img(src=data.activity._.keyImage.fit(750,450)).img-responsive
+					.lead!= data.activity.content.brief
 					!= data.activity.content.full
+

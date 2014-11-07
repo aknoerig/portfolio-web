@@ -1,7 +1,15 @@
 extends ../layouts/default
 
 mixin activity(activity)
-	.activity(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
+	.activities-activity.col-sm-6.col-md-4
+		a.thumbnail(href='/activities/activity/' + activity.slug)
+			img(src=activity._.keyImage.fill(400,300) alt=activity.title)
+			.caption
+				h2= activity.title
+				p= 	activity.innovation
+
+mixin activity-list(activity)
+	.activities-activity(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
 		h2: a(href='/activities/activity/' + activity.slug)= activity.title
 		p.lead.text-muted Posted 
 			if activity.publishedDate
@@ -16,24 +24,35 @@ mixin activity(activity)
 						|  
 			if activity.author
 				| by #{activity.author.name.first}
-		if activity.image.exists
-			img(src=activity._.image.fit(160,160)).img.pull-right
+		if activity.keyImage.exists
+			img(src=activity._.keyImage.fit(160,160)).img.pull-right
 		p!= activity.content.brief
 		if activity.content.extended
 			p.read-more: a(href='/activities/activity/' + activity.slug) Read more...
 
+
 block intro
-	.container
-		h1= data.category ? data.category.name : 'Activities'
+	.container#intro
+		h1 Let's make it work.
 
 block content
+
+	.container
+		ul.filter
+			li
+				a(href='/activities', class=!data.category ? 'active' : false) All
+			each cat in data.categories
+				li
+					a(href='/activities/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= cat.name
+			
+
 	.container: .row
-		.col-sm-8.col-md-9
+		
 			if filters.category && !data.category
 				h3.text-muted Invalid Category.
 			else
 				if data.activities.results.length
-					if data.activities.totalPages > 1
+					//-if data.activities.totalPages > 1
 						h4.text-weight-normal Showing 
 							strong #{data.activities.first}
 							|  to 
@@ -41,7 +60,7 @@ block content
 							|  of 
 							strong #{data.activities.total}
 							|  activities.
-					else
+					//-else
 						h4.text-weight-normal Showing #{utils.plural(data.activities.results.length, '* activity')}.
 					.activities
 						each activity in data.activities.results
@@ -65,11 +84,3 @@ block content
 						h3.text-muted There are no activities in the category #{data.category.name}.
 					else
 						h3.text-muted There are no activities yet.
-		
-		if data.categories.length
-			.col-sm-4.col-md-3
-				h2 Categories
-				.list-group(style='margin-top: 70px;')
-					a(href='/activities', class=!data.category ? 'active' : false).list-group-item All Categories
-					each cat in data.categories
-						a(href='/activities/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name

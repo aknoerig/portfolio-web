@@ -24,6 +24,6 @@ block content
 						if data.publication.author
 							| by #{data.publication.author.name.first}
 				.publication
-					if data.publication.image.exists
-						.image-wrap: img(src=data.publication._.image.fit(750,450)).img-responsive
+					if data.publication.keyImage.exists
+						.image-wrap: img(src=data.publication._.keyImage.fit(750,450)).img-responsive
 					!= data.publication.content.full

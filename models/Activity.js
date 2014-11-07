@@ -21,7 +21,7 @@ Activity.add({
 	location: { type: String },
 	featured: { type: Boolean, default: false, index: true },
 	link: { type: Types.Url },
-	image: { type: Types.CloudinaryImage },
+	keyImage: { type: Types.CloudinaryImage },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }

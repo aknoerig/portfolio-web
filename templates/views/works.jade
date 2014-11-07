@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 mixin project(project)
-	.project.col-sm-6.col-md-4
+	.works-project.col-sm-6.col-md-4
 		a.thumbnail(href='/works/project/' + project.slug)
 			img(src=project._.keyImage.fill(400,300) alt=project.title)
 			.caption
@@ -9,7 +9,7 @@ mixin project(project)
 				p= 	project.innovation
 
 mixin project-list(project)
-	.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+	.works-project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
 		h2: a(href='/works/project/' + project.slug)= project.title
 		p.lead.text-muted Posted 
 			if project.publishedDate
