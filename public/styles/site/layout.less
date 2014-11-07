@@ -1,19 +1,30 @@
 /* General */
-* {
-  margin: 0;
-  padding: 0;
-}
+
+@brand-primary: #333;
+
+@body-bg: #fff;
+@text-color: #888;
+@headings-color: #000;
+@link-color: #000;
+@link-hover-color: #000;
+@link-hover-decoration: underline;
+
+@font-family-sans-serif: 'CorbelRegular', 'Corbel', sans-serif;
+@font-family-serif: 'ChaparralProRegular', serif;
+@font-family-base: @font-family-serif;
+@font-size-base: 12pt;
+@headings-font-family: @font-family-sans-serif;
+
+@border-radius-base: 0;
+@border-radius-small: 0;
+@border-radius-large: 0;
+
 body {
-  padding: 90px 0 0 0;
-  font-family: 'ChaparralProRegular', serif;
-  font-size: 13pt;
-  color: #888;
+  padding-top: 90px;
 }
 h1, h2, h3, h4, h5, h6, nav, .filter, button {
-  font-family: 'CorbelRegular', 'Corbel', sans-serif;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: black;
 }
 
 
@@ -22,7 +33,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 
     background-color: #FFF;
     border: none;
-    font-family: 'CorbelRegular', 'Corbel', sans-serif;
+    font-family: @headings-font-family;
     font-size: 11pt;
     opacity: 0.9;
     -webkit-box-shadow: none;  
@@ -85,12 +96,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
     text-transform: none;
   }
 
-  a {
-    color: black;
-  }
-
   a:hover {
-    color: black;
     text-decoration: none;
     border-bottom: 1px solid black;
   }
@@ -106,7 +112,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   box-shadow: none;
 
   li {
-    font-family: 'CorbelRegular', 'Corbel', sans-serif;
+    font-family: @headings-font-family;
     font-size: 10pt;
     text-transform: uppercase;
     display: inline-block;
@@ -128,7 +134,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 }
 
 
-.project {
+.works-project {
 
   :hover {
     background: #eee;
@@ -141,7 +147,6 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   padding: 0;
   border: none !important;
   box-shadow: none;
-  border-radius: none;
 
   p {
     font-family: 'ChaparralProItalic', serif;
@@ -154,16 +159,8 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   font-size: 14px; 
   border-top: 1px solid #CCC;
   text-align: left;
+  margin-top: 1.5em;
   padding-top: 1.5em;
   padding-bottom: 1em;
 
-  a {
-    color: black;
-  }
-
-  a:hover {
-    color: black;
-    text-decoration: none;
-    border-bottom: 1px solid black;
-  }
 }
