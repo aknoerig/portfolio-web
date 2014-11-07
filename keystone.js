@@ -21,6 +21,10 @@ keystone.init({
 	'view engine': 'jade',
 	
 	'emails': 'templates/emails',
+
+	'wysiwyg images': true,
+	'wysiwyg cloudinary images': true,
+	'wysiwyg additional buttons': 'formatselect removeformat blockquote',
 	
 	'auto update': true,
 	'session': true,

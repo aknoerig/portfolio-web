@@ -31,6 +31,7 @@ Project.add({
 	activities: { type: Types.Relationship, ref: 'Activity', many: true },
 	keyImage: { type: Types.CloudinaryImage },
 	gallery: { type: Types.CloudinaryImages },
+	link: { type: Types.Url },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }

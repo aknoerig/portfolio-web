@@ -49,6 +49,9 @@ block content
 								| , 
 							else
 								br
+				if data.project.link
+					.link
+						a(href=data.project.link, target="_blank")= data.project._.link.format()
 		.col-sm-8.col-sm-offset-1.col-md-9.col-md-offset-0
 			article
 				//-p: a(href='/works') &larr; back to the works
@@ -60,18 +63,19 @@ block content
 						h1= data.project.title
 						h3= data.project.innovation
 						
-					.project
-						if data.project.keyImage.exists
-							.image-wrap: img(src=data.project._.keyImage.fit(750,450)).img-responsive
-						.lead!= data.project.content.brief
-						!= data.project.content.full
+
+					if data.project.keyImage.exists
+						.image-wrap: img(src=data.project._.keyImage.fit(750,450)).img-responsive
+					.lead!= data.project.content.brief
+					!= data.project.content.full
 
 			if data.project.gallery.length
-				.row.gallery-images
+				.row
 					//-if data.project.keyImage.exists
 						.col-sm-4.col-md-4.gallery-image: img(src=data.project._.keyImage.limit(400,300))
 					each image in data.project.gallery
-						.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(400,300)).img-thumbnail
+						.col-xs-6.col-sm-4.col-md-3: a(href=image.url)
+							img(src=image.fill(200,150))
 
 			if data.project.activities && data.project.activities.length
 				.row.related
