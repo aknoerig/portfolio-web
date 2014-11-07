@@ -4,7 +4,7 @@
   padding: 0;
 }
 body {
-  padding: 50px 0 0 0;
+  padding: 90px 0 0 0;
   font-family: 'ChaparralProRegular', serif;
   font-size: 11pt;
   color: #888;
@@ -16,15 +16,6 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   color: black;
 }
 
-  a {
-    color: black;
-  }
-
-  a:hover {
-    color: black;
-    text-decoration: none;
-    border-bottom: 1px solid black;
-  }
 
 /* Navigation */
 .navbar-default {
@@ -33,6 +24,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
     border: none;
     font-family: 'CorbelRegular', 'Corbel', sans-serif;
     font-size: 11pt;
+    opacity: 0.9;
     -webkit-box-shadow: none;  
     -moz-box-shadow: none;  
     box-shadow: none;
@@ -58,6 +50,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
       border-bottom: 1px solid #DDD;
       padding-right: 2px;
       padding-left: 2px;
+      margin-left: 0px !important;
     }
 }
 
@@ -73,6 +66,36 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 
 
 /* Content */
+
+#body {
+
+  h2 {
+    font-size: 14pt;
+    letter-spacing: 1px;
+    line-height: 20px;
+    padding-top: 2px;
+  }
+
+  h3 {
+    font-family: 'ChaparralProRegular', serif;
+    font-size: 14pt;
+    letter-spacing: 0;
+    line-height: 20px;
+    text-transform: none;
+  }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+  }
+
+}
+
 
 .filter {
   background: #FFF;
@@ -103,53 +126,23 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   }
 }
 
-#body {
+.project {
 
-  h2 {
-    font-size: 14pt;
-    letter-spacing: 1px;
-    line-height: 20px;
-    padding-top: 2px;
+  :hover {
+    background: #eee;
   }
 
-  h3 {
-    font-family: 'ChaparralProRegular', serif;
-    font-size: 14pt;
-    letter-spacing: 0;
-    line-height: 20px;
-    text-transform: none;
-  }
-
-}
-
-.activeEntry {
-  transition: all 1s ease;
-  -o-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -webkit-transition: all 1s ease;
-  max-height: 1000px;
-  overflow: hidden;
-}
-.activeEntry.ui-animate {
-  opacity: 0;
-  max-height: 0;
-}
-
-.activeEntry aside .ui-scrollfix {
-  position: fixed;
-  top: 40px;
 }
 
 .thumbnail {
   padding: 0;
-  border: none;
+  border: none !important;
   box-shadow: none;
-}
-.thumbnail p {
-  font-family: 'CorbelRegular', 'Corbel', sans-serif;
-  padding-top: 5px;
-  text-transform: uppercase;
-  font-size: 12px; 
+  border-radius: none;
+
+  p {
+    font-family: 'ChaparralProItalic', serif;
+  }
 }
 
 .gallery-image img{
@@ -160,9 +153,19 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 
 /* footer */
 #footer {
-  /* font-family: 'CorbelRegular', 'Corbel', sans-serif; */
   font-size: 14px; 
   border-top: 1px solid #CCC;
   text-align: left;
-  padding-top: 5px;
+  padding-top: 1.5em;
+  padding-bottom: 1em;
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+  }
 }

@@ -1,14 +1,12 @@
 extends ../layouts/default
 
 mixin project(project)
-	.col-sm-6.col-md-4
-		.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
-		.thumbnail
-			img(src=project._.keyImage.fit(400,300) alt=project.title)
+	.project.col-sm-6.col-md-4
+		a.thumbnail(href='/works/project/' + project.slug)
+			img(src=project._.keyImage.fill(400,300) alt=project.title)
 			.caption
 				h2= project.title
 				p= 	project.innovation
-				p.read-more: a(href='/works/project/' + project.slug) Read more...
 
 mixin project-list(project)
 	.project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
@@ -35,7 +33,7 @@ mixin project-list(project)
 
 block intro
 	.container#intro
-		h1= data.category ? data.category.name : 'Works'
+		h1 Let's make it work.
 
 block content
 
