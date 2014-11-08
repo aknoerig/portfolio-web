@@ -3,7 +3,7 @@ extends ../layouts/default
 mixin project(project)
 	.works-project.col-sm-6.col-md-4
 		a.thumbnail(href='/works/project/' + project.slug)
-			img(src=project._.keyImage.fill(400,300) alt=project.title)
+			img(src=project._.keyImage.fill(400,300) alt=project.title).img-responsive
 			.caption
 				h2= project.title
 				p= 	project.innovation
@@ -37,13 +37,13 @@ block intro
 
 block content
 
-	.container
-		ul.filter
-			li
-				a(href='/works', class=!data.category ? 'active' : false) All
+	.container: .row
+		ul.nav.nav-tabs
+			li(class=!data.category ? 'active' : '')
+				a(href='/works') All
 			each cat in data.categories
-				li
-					a(href='/works/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= cat.name
+				li(class=data.category && data.category.id == cat.id ? 'active' : '')
+					a(href='/works/' + cat.key)= cat.name
 			
 
 	.container: .row

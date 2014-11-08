@@ -12,6 +12,9 @@ module.exports = function(grunt) {
 	// Time how long tasks take. Can help when optimizing build times
 	require('time-grunt')(grunt);
 
+	// Post-process CSS for vendor-specific compatibility
+	var autoprefixer = require('autoprefixer-core');
+
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -69,6 +72,15 @@ module.exports = function(grunt) {
 			}
 		},
 
+	    postcss: {
+	        options: {
+	            processors: [
+	              autoprefixer({ browsers: ['last 2 version'] }).postcss
+	            ]
+	        },
+	        dist: { src: 'public/styles/*.css' }
+	    },
+
 		watch: {
 			js: {
 				files: [
@@ -105,10 +117,13 @@ module.exports = function(grunt) {
 		]);
 	});
 
+	grunt.loadNpmTasks('grunt-postcss');
+
 	// default option to connect server
 	grunt.registerTask('serve', function(target) {
 		grunt.task.run([
 			'jshint',
+			'postcss',
 			'concurrent:dev'
 		]);
 	});

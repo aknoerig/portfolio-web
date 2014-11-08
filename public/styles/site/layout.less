@@ -19,6 +19,9 @@
 @border-radius-small: 0;
 @border-radius-large: 0;
 
+@thumbnail-padding: 0;
+@thumbnail-caption-padding: 0;
+
 body {
   padding-top: 90px;
 }
@@ -59,9 +62,9 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
     .navbar-brand {
       font-size: 11pt;
       border-bottom: 1px solid #DDD;
-      padding-right: 2px;
-      padding-left: 2px;
-      margin-left: 0px !important;
+      //padding-right: 2px;
+      //padding-left: 2px;
+      //margin-left: 0px !important;
     }
 }
 
@@ -99,57 +102,53 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   a:hover {
     text-decoration: none;
     border-bottom: 1px solid black;
+
+    img:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      transition: all 0.3s ease 0s;
+    }
   }
+
 
 }
 
 
-.filter {
+.nav-tabs {
   background: #FFF;
-  margin: 0;
-  width: 100%;
   border: none;
-  box-shadow: none;
+  margin-bottom: 1em;
 
   li {
+    border: none;
+    background: none;
+  }
+
+  li > a,
+  li.active > a,
+  li.active > a:hover {
     font-family: @headings-font-family;
-    font-size: 10pt;
+    font-size: 11pt;
     text-transform: uppercase;
-    display: inline-block;
-    padding: 0px 2px;
-    margin: 10px 15px 10px 0px;
     color: #333333;
     border: none;
     background: none;
   }
 
-  a {
-    border: none;
-    background: none;
-  }
-
-  a.active {
+  li.active {
     border-bottom: 1px solid;
   }
 }
 
 
-.works-project {
-
-  :hover {
-    background: #eee;
-  }
-
-}
-
-
 .thumbnail {
-  padding: 0;
   border: none !important;
-  box-shadow: none;
 
   p {
     font-family: 'ChaparralProItalic', serif;
+    font-size: 13pt;
   }
 }
 
