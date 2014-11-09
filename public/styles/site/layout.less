@@ -7,7 +7,7 @@
 @headings-color: #000;
 @link-color: #000;
 @link-hover-color: #000;
-@link-hover-decoration: underline;
+@link-hover-decoration: none;
 
 @font-family-sans-serif: 'CorbelRegular', 'Corbel', sans-serif;
 @font-family-serif: 'ChaparralProRegular', serif;
@@ -29,7 +29,10 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
   text-transform: uppercase;
   letter-spacing: 3px;
 }
-
+a {
+  transition: all 0.5s ease 0s;
+  border-bottom: 1px solid transparent;
+}
 
 /* Navigation */
 .navbar-default {
@@ -70,7 +73,7 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 
 
  /* Intro */
-#intro h1 {
+.intro h1 {
   font-family: 'ChaparralProItalic', serif;
   font-size: 24pt;
   text-transform: none;
@@ -153,13 +156,30 @@ h1, h2, h3, h4, h5, h6, nav, .filter, button {
 }
 
 
+.index {
+
+  font-size: 16pt;
+  
+  h1 {
+    font-size: 32pt;
+  }
+
+  .panel {
+    background: #000;
+    opacity: 0.8;
+  }
+
+  .panel-body {
+    color: #fff;
+  }
+
+}
+
 /* footer */
 #footer {
-  font-size: 14px; 
+  color: #bbb;
   border-top: 1px solid #CCC;
-  text-align: left;
   margin-top: 1.5em;
   padding-top: 1.5em;
   padding-bottom: 1em;
-
 }

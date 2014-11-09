@@ -1,11 +1,25 @@
 extends ../layouts/default
 
 block intro
-	.container#intro
-		h1 Oh wow.
+	.container.index.intro
+		h1 I believe that technology can be humanized.
 
 block content
-	.container: .jumbotron
-		h1 Welcome
-		p I'm a lorem ipsum
-		
+	.container.index: .row
+		.col-sm-6.col-md-4
+			| I'm an interaction designer and technologist with more than 15 years of experience.
+
+		.col-sm-6.col-md-4
+			p Recent topics include 
+				a(href="/works/") Internet of Things
+				| , 
+				a(href="/works/") Smart Home
+				| , 
+
+		.col-sm-6.col-md-4.panel.panel-default
+			a(href="/contact/")
+				.panel-body
+					p Need support? 
+						i.fa.fa-angle-right
+						|  Get in touch.
+			
