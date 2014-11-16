@@ -39,7 +39,7 @@ a {
 /* Navigation */
 .navbar-default {
 
-    background-color: #FFF;
+    background-color: #fff;
     border: none;
     font-family: @headings-font-family;
     font-size: 11pt;
@@ -55,6 +55,7 @@ a {
 
     .navbar-nav > li > a:hover {
       color: @link-color;
+      border-bottom: 1px solid #ddd;
     }
  
     .navbar-nav > .active > a, 
@@ -65,7 +66,7 @@ a {
  
     .navbar-brand {
       font-size: 11pt;
-      border-bottom: 1px solid #DDD;
+      border-bottom: 1px solid #fff;
       //padding-right: 2px;
       //padding-left: 2px;
       //margin-left: 0px !important;
@@ -96,10 +97,6 @@ a {
     letter-spacing: 3px;
     line-height: 20px;
     padding-top: 2px;
-    
-    border-left: 2px solid #000;
-    padding-left: 20px;
-    margin-left: -20px;
   }
 
   h3 {
@@ -108,6 +105,16 @@ a {
     letter-spacing: 0;
     line-height: 20px;
     text-transform: none;
+  }
+
+  article {
+
+    h2 {
+      border-left: 2px solid #000;
+      padding-left: 20px;
+      margin-left: -20px;
+    }
+
   }
 
   a:hover {
