@@ -1,6 +1,6 @@
 extends ../layouts/default
 
-block content
+block intro
 	.container
 		//-p: a(href='/works') &larr; back to the works
 		//-hr
@@ -10,6 +10,8 @@ block content
 			h1= data.project.title
 				small= data.project.innovation
 
+
+block content
 	.container: .row
 		.col-sm-3.col-md-3
 			aside

@@ -1,6 +1,90 @@
 extends ../layouts/default
 
-block content
+block intro
 	.container
 		h1 Bio
-		p I'm lorem ipsum.
+
+block content
+	.container: .row
+		.col-sm-2.col-md-3
+			div.hidden-xs.sidenav-container
+				ul.nav.sidenav(data-spy="affix" data-offset-top="100" data-offset-bottom="100")
+					li
+						a(href="#work-experience") Work Experience
+					li
+						a(href="#education") Education
+
+		.col-sm-8.col-sm-offset-2.col-md-9.col-md-offset-0
+			article
+				p.lead I'm an interaction designer...
+					| asdfhf asdjkfhjsdkahfjk fhsadjkfsakljfksd
+					| asdfhf asdjkfhjsdkahfjk fhsadjkfsakljfksd
+					| asdfhf asdjkfhjsdkahfjk fhsadjkfsakljfksd
+					| asdfhf asdjkfhjsdkahfjk fhsadjkfsakljfksd
+
+				section
+					h2(id="work-experience") Work Experience
+
+
+					//-h3 
+						a(href="http://andreknoerig.de" target="_blank") Humanizing Technology
+					p
+						strong Independent Consultant
+						br
+						| 1999-2006, 2014-
+
+					p: em Consulting on UX design &amp; technology innovations
+
+
+					h3 
+						a(href="http://www.ixds.com" target="_blank") IXDS
+					p
+						strong Design &amp; Engineering Lead
+						br
+						| 2012-14
+					p
+						strong Managing Director
+						br
+						| 2009-12
+					p: em Built up the company and consulted for large corporations and agile start-ups
+
+
+					h3 
+						a(href="http://fritzing.org" target="_blank") Fritzing
+					p
+						strong Project Lead
+						br
+						| 2007-
+
+					p: em Led teams in independent research projects
+
+
+					h3 
+						a(href="http://design.fh-potsdam.de" target="_blank") Interaction Design Lab, FH Potsdam
+					p
+						strong Research Associate
+						br
+						| 2012-14
+
+					p: em Led teams in independent research projects
+
+
+				section
+					h2(id="education") Education
+					
+					h3 M.A. Interaction Design
+					p
+						a(href="http://design.fh-potsdam.de" target="_blank") FH Potsdam
+						br
+						| 2004-06
+
+
+					h3 Diplom-Medieninformatiker (FH)
+					p
+						a(href="http://www.fh-wedel.de" target="_blank") FH Wedel
+						br
+						| 2001-04
+
+block js
+	script.
+		$('body').scrollspy({ target: '.sidenav-container', offset: 80 })
