@@ -22,15 +22,17 @@
 @thumbnail-padding: 0;
 @thumbnail-caption-padding: 0;
 
+@input-color-placeholder: #ccc;
+
 body {
-  padding-top: 90px;
+  padding-top: 80px;
 }
 h1, h2, h3, h4, h5, h6, nav, .filter, button {
   text-transform: uppercase;
   letter-spacing: 3px;
 }
 a {
-  transition: all 0.5s ease 0s;
+  transition: all 0.3s ease 0s;
   border-bottom: 1px solid transparent;
 }
 
@@ -80,6 +82,7 @@ a {
   letter-spacing: 1px;
   padding-top: 20px;
   padding-bottom: 50px;
+  width: 80%;
 }
 
 
@@ -115,7 +118,6 @@ a {
     }
   }
 
-
 }
 
 
@@ -143,6 +145,20 @@ a {
   li.active {
     border-bottom: 1px solid;
   }
+}
+
+
+form {
+
+  label {
+    font-family: @headings-font-family;
+    color: #000;
+  }
+
+  button {
+    font-family: @headings-font-family;
+  }
+
 }
 
 
@@ -182,4 +198,10 @@ a {
   margin-top: 1.5em;
   padding-top: 1.5em;
   padding-bottom: 1em;
+
+
+  a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid black;
+  }
 }

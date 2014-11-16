@@ -1,6 +1,15 @@
 extends ../layouts/default
 
 block content
+	.container
+		//-p: a(href='/works') &larr; back to the works
+		//-hr
+		if !data.project
+			h2 Invalid Project.
+		else
+			h1= data.project.title
+				small= data.project.innovation
+
 	.container: .row
 		.col-sm-3.col-md-3
 			aside
@@ -54,20 +63,10 @@ block content
 						a(href=data.project.link, target="_blank")= data.project._.link.format()
 		.col-sm-8.col-sm-offset-1.col-md-9.col-md-offset-0
 			article
-				//-p: a(href='/works') &larr; back to the works
-				//-hr
-				if !data.project
-					h2 Invalid Project.
-				else
-					header
-						h1= data.project.title
-						h3= data.project.innovation
-						
-
-					if data.project.keyImage.exists
-						.image-wrap: img(src=data.project._.keyImage.fit(750,450)).img-responsive
-					.lead!= data.project.content.brief
-					!= data.project.content.full
+				if data.project.keyImage.exists
+					.image-wrap: img(src=data.project._.keyImage.fit(750,450)).img-responsive
+				.lead!= data.project.content.brief
+				!= data.project.content.full
 
 			if data.project.gallery.length
 				.row

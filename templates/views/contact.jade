@@ -2,33 +2,61 @@ extends ../layouts/default
 
 block intro
 	.container
-		h1 Contact Us
+		h1 Contact
 		
 block content
-	.container
-		if enquirySubmitted
-			h3 Thanks for getting in touch.
-		else
-			.row: .col-sm-8.col-md-6
-				form(method='post')
-					input(type='hidden', name='action', value='contact')
-					.form-group(class=validationErrors.name ? 'has-error' : null)
-						label Name
-						input(type='text', name='name.full', value=formData['name.full']).form-control
-					.form-group(class=validationErrors.email ? 'has-error' : null)
-						label Email
-						input(type='email', name='email', value=formData.email).form-control
-					.form-group
-						label Phone
-						input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
-					.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
-						label What are you contacting us about?
-						select(name='enquiryType').form-control
-							option(value='') (select one)
-							each type in enquiryTypes
-								option(value=type.value, selected=formData.enquiryType == type.value)= type.label
-					.form-group(class=validationErrors.message ? 'has-error' : null)
-						label Message
-						textarea(name='message', placeholder='Leave us a message...' rows=4).form-control= formData.message
-					.form-actions
-						button(type='submit').btn.btn-primary Send
+	.container 
+		.row
+			.col-sm-8.col-md-6
+				h5 Andr&eacute; Kn&ouml;rig
+				p
+					br
+					| Rheinsberger Str. 6
+					br
+					| 10115 Berlin
+					br
+					| Phone +49 (0)163 6190496 
+					br
+				p
+					i.fa.fa-envelope
+					|  
+					a(href="mailto:mail@andreknoerig.de") mail@andreknoerig.de
+				p
+					i.fa.fa-linkedin
+					|  
+					a(href="http://de.linkedin.com/in/andreknoerig/" target="_blank") LinkedIn
+				p
+					i.fa.fa-xing
+					|  
+					a(href="https://www.xing.com/profile/Andre_Knoerig" target="_blank") XING
+				p
+					i.fa.fa-github
+					|  
+					a(href="https://github.com/aknoerig" target="_blank") github
+			.col-sm-8.col-md-6
+				if enquirySubmitted
+					h3 Thanks for getting in touch.
+				else
+					h5 Leave a message
+					form(method='post')
+						input(type='hidden', name='action', value='contact')
+						.form-group(class=validationErrors.name ? 'has-error' : null)
+							label Name
+							input(type='text', name='name.full', value=formData['name.full']).form-control
+						.form-group(class=validationErrors.email ? 'has-error' : null)
+							label Email
+							input(type='email', name='email', value=formData.email).form-control
+						.form-group
+							label Phone
+							input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
+						//-.form-group(class=validationErrors.enquiryType ? 'has-error' : null)
+							label What are you contacting us about?
+							select(name='enquiryType').form-control
+								option(value='') (select one)
+								each type in enquiryTypes
+									option(value=type.value, selected=formData.enquiryType == type.value)= type.label
+						.form-group(class=validationErrors.message ? 'has-error' : null)
+							label Message
+							textarea(name='message', placeholder='Leave a message.' rows=4).form-control= formData.message
+						.form-actions
+							button(type='submit').btn.btn-primary Send
