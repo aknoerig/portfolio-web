@@ -1,15 +1,24 @@
 extends ../layouts/default
 
 mixin activity(activity)
-	.activities-activity.col-sm-6.col-md-4
+	.works-project.col-sm-3.col-md-2
 		a.thumbnail(href='/activities/activity/' + activity.slug)
-			img(src=activity._.keyImage.fill(400,300) alt=activity.title)
+			img(src=activity._.keyImage.fill(200,110) alt=activity.title).img-responsive
 			.caption
-				h2= activity.title
-				p= 	activity.innovation
+				h4= activity.title
+				if activity.category
+					p= activity.category.name
+
+mixin activity-media(activity)
+	.media
+		a.media-left(href='/activities/activity/' + activity.slug)
+			img(src=activity._.keyImage.fill(100,100) alt=activity.title).img-responsive
+		.media-body
+			h4.media-heading= activity.title
+			p= activity.category.name
 
 mixin activity-list(activity)
-	.activities-activity(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
+	.activity(data-ks-editable=editable(user, { list: 'Project', id: activity.id }))
 		h2: a(href='/activities/activity/' + activity.slug)= activity.title
 		p.lead.text-muted Posted 
 			if activity.publishedDate
@@ -32,18 +41,18 @@ mixin activity-list(activity)
 
 
 block intro
-	.container#intro
-		h1 Let's make it work.
+	.container.intro
+		h1 What I'm up to.
 
 block content
 
-	.container
-		ul.filter
-			li
-				a(href='/activities', class=!data.category ? 'active' : false) All
+	.container: .row
+		ul.nav.nav-tabs
+			li(class=!data.category ? 'active' : '')
+				a(href='/activities') All
 			each cat in data.categories
-				li
-					a(href='/activities/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= cat.name
+				li(class=data.category && data.category.id == cat.id ? 'active' : '')
+					a(href='/activities/' + cat.key)= cat.name
 			
 
 	.container: .row

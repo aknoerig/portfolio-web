@@ -24,10 +24,17 @@
 
 @input-color-placeholder: #ccc;
 
+* {
+  -webkit-font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  -ms-font-feature-settings: "kern";
+  font-feature-settings: "kern";
+}
+
 body {
   padding-top: 80px;
 }
-h1, h2, h3, h4, h5, h6, nav, .filter, button {
+h1, nav, .filter, button {
   text-transform: uppercase;
   letter-spacing: 3px;
 }
@@ -90,11 +97,12 @@ a {
 
 #body {
 
+  -webkit-font-smoothing: antialiased;
   font-weight: 100;
 
   h2 {
-    font-size: 18pt;
-    letter-spacing: 3px;
+    font-size: 16pt;
+    letter-spacing: 1px;
     line-height: 20px;
     padding-top: 2px;
   }
@@ -117,17 +125,26 @@ a {
 
   }
 
+  a {
+
+    img {
+      transition: all 0.3s ease 0s;
+      //opacity: 1;
+      //filter: grayscale(1);
+      -webkit-filter: grayscale(1);
+    }
+  }
+
   a:hover {
     text-decoration: none;
     border-bottom: 1px solid black;
 
     img:hover {
-      opacity: 0.7;
+      //opacity: 0.7;
+      filter: grayscale(0);
+      -webkit-filter: grayscale(0);
     }
 
-    img {
-      transition: all 0.3s ease 0s;
-    }
   }
 
   hr {
@@ -237,6 +254,7 @@ a {
     p {
       font-family: 'ChaparralProItalic', serif;
       font-size: 13pt;
+      line-height: normal;
     }
   }
 
