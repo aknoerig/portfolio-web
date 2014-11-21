@@ -79,6 +79,19 @@ a {
     .navbar-nav > .active > a:focus {
       color: @link-color;
     }
+
+
+  @media (max-width: @screen-sm) {
+    .navbar-toggle {
+      border: none;
+      float: left;
+    }
+    .navbar-brand {
+      text-align: center;
+      width: 80%;
+    }
+
+  }
 }
 
 
@@ -98,6 +111,9 @@ a {
 
 #body {
 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
+
   -webkit-animation: fadein 0.8s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 0.8s; /* Firefox < 16 */
     -ms-animation: fadein 0.8s; /* Internet Explorer */
@@ -110,9 +126,6 @@ a {
 
   article {
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    
     h2 {
       border-left: 2px solid #000;
       padding-left: 20px;
@@ -143,7 +156,7 @@ a {
     text-decoration: none;
     border-bottom: 1px solid black;
 
-    img:hover {
+    img {
       //opacity: 0.7;
       filter: grayscale(0);
       -webkit-filter: grayscale(0);
@@ -311,6 +324,15 @@ a {
 
   }
 
+  .activities {
+    .item {
+      width: 15%;
+    }
+    .item.x2 {
+      width: 30%;
+    }
+  }
+
   .thumbnail {
     border: none !important;
 
@@ -321,10 +343,31 @@ a {
       padding-top: 2px;
     }
 
-    p {
+    h4 {
+      height: 45px;
+      margin-top: 5pt;
+      margin-bottom: 5pt;
+      //white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .caption {
       font-family: 'ChaparralProItalic', serif;
       font-size: 13pt;
       line-height: normal;
+
+      .description {
+        height: 42px;
+        //white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0;
+      }
+
+      .date {
+        color: #000;
+      }
     }
   }
 

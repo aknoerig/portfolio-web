@@ -1,24 +1,46 @@
 extends ../layouts/default
 
 mixin activity(activity)
-	.works-project.col-sm-3.col-md-2(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
-		a.thumbnail(href='/activities/activity/' + activity.slug)
-			img(src=activity._.keyImage.fill(200,110) alt=activity.title).img-responsive
-			.caption
-				h4= activity.title
-				p
-					if activity.subtitle
-						= activity.subtitle
-						|  
-					if activity.place
-						| @ 
-						= activity.place
-					//if activity.location
-						| , 
-						= activity.location
-					if activity.date
-						br
-						= activity._.date.format('MM.YYYY')
+	if activity.featured
+		//.col-xs-12.col-sm-6.col-md-6.col-lg-4
+		.item.x2(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
+			a.thumbnail(href='/activities/activity/' + activity.slug)
+				img(src=activity._.keyImage.fill(400,400, {gravity:'center'}) alt=activity.title).img-responsive
+				.caption
+					h4= activity.title
+					p.description
+						if activity.subtitle
+							= activity.subtitle
+							|  
+						if activity.place
+							| @ 
+							= activity.place
+						//if activity.location
+							| , 
+							= activity.location
+					p.date
+						if activity.date
+							= activity._.date.format('D.M.YYYY')
+	else
+		//.col-xs-6.col-sm-3.col-md-3.col-lg-2
+		.item(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
+			a.thumbnail(href='/activities/activity/' + activity.slug)
+				img(src=activity._.keyImage.fill(200,110, {gravity:'center'}) alt=activity.title).img-responsive
+				.caption
+					h4= activity.title
+					p.description
+						if activity.subtitle
+							= activity.subtitle
+							|  
+						if activity.place
+							| @ 
+							= activity.place
+						//if activity.location
+							| , 
+							= activity.location
+					p.date
+						if activity.date
+							= activity._.date.format('D.M.YYYY')
 
 
 mixin activity-media(activity)
@@ -83,7 +105,7 @@ block content
 							|  activities.
 					//-else
 						h4.text-weight-normal Showing #{utils.plural(data.activities.results.length, '* activity')}.
-					.activities
+					.activities.js-packery(data-packery-options='{ "itemSelector": ".item", "gutter": 15 }')
 						each activity in data.activities.results
 							+activity(activity)
 					
@@ -105,3 +127,6 @@ block content
 						h3.text-muted There are no activities in the category #{data.category.name}.
 					else
 						h3.text-muted There are no activities yet.
+
+block js
+	script(src="/js/lib/packery.pkgd.min.js")
