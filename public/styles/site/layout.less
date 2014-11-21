@@ -98,9 +98,6 @@ a {
 
 #body {
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   -webkit-animation: fadein 0.8s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 0.8s; /* Firefox < 16 */
     -ms-animation: fadein 0.8s; /* Internet Explorer */
@@ -111,28 +108,23 @@ a {
     margin-bottom: 12pt;
   }
 
-  h2 {
-    font-size: 16pt;
-    letter-spacing: 0.5px;
-    line-height: 20px;
-    padding-top: 2px;
-  }
-
-/*
-  h3 {
-    font-family: 'ChaparralProRegular', serif;
-    font-size: 14pt;
-    letter-spacing: 0;
-    line-height: 20px;
-    text-transform: none;
-  }
-*/
   article {
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
     h2 {
       border-left: 2px solid #000;
       padding-left: 20px;
       margin-left: -20px;
+    }
+
+    h4, h5, h6 {
+      margin-top: 15pt;
+    }
+
+    p {
+      margin-bottom: 5pt;
     }
 
   }
@@ -321,6 +313,13 @@ a {
 
   .thumbnail {
     border: none !important;
+
+    h2 {
+      font-size: 16pt;
+      letter-spacing: 0.5px;
+      line-height: 20px;
+      padding-top: 2px;
+    }
 
     p {
       font-family: 'ChaparralProItalic', serif;
