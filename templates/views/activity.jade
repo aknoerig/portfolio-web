@@ -1,32 +1,65 @@
 extends ../layouts/default
 
+block intro
+	.container
+		//-p: a(href='/works') &larr; back to the works
+		//-hr
+		if !data.activity
+			h2 Invalid Project.
+		else
+			h1= data.activity.title
+
+
 block content
 	.container: .row
 		.col-sm-3.col-md-3
 			aside
-				.meta
+				p.sub= data.activity.subtitle
+				p.meta
 					//- if data.activity.category == "Consulting"
 					//- if data.activity.category
 							| A 
-							a(href='/activities/' + data.activity.category.key)= data.activity.category.name 
+							a(href='/works/' + data.activity.category.key)= data.activity.category.name 
 							|  activity
 							br
-					
+					if data.activity.fromDate
+						| on #{data.activity._.date.format('YYYY')} 
+						br
+					if data.activity.place
+						| at 
+						a(href=data.activity.placeLink, target="_blank")= data.activity.place
+						br
+					if data.activity.location
+						| in #{data.activity.location}
+						br
 				if data.activity.link
-					.link
+					p.link
+						| &rarr; 
 						a(href=data.activity.link, target="_blank")= data.activity._.link.format()
-		.col-sm-8.col-sm-offset-1.col-md-9.col-md-offset-0
+				p.tags
+					
+		.col-sm-8.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
-				//-p: a(href='/activities') &larr; back to the activities
-				//-hr
-				if !data.activity
-					h2 Invalid Activity.
-				else
-					header
-						h1= data.activity.title
+				if data.activity.keyImage.exists
+					.img-key: img(src=data.activity._.keyImage.fit(750,450)).img-responsive
+				.lead!= data.activity.content.brief
+				!= data.activity.content.extended
 
-					if data.activity.keyImage.exists
-						.image-wrap: img(src=data.activity._.keyImage.fit(750,450)).img-responsive
-					.lead!= data.activity.content.brief
-					!= data.activity.content.full
+			if data.activity.gallery && data.activity.gallery.length
+				.row.gallery
+					hr
+					//-if data.activity.keyImage.exists
+						.col-sm-4.col-md-4.gallery-image: img(src=data.activity._.keyImage.limit(400,300))
+					each image in data.activity.gallery
+						.col-xs-6.col-sm-4.col-md-3: a(href=image.url)
+							img(src=image.fill(200,120)).img-responsive
 
+			if data.activity.works && data.activity.works.length
+				.related
+					hr
+					h4 Related works
+					each project, i in data.activity.works
+						a(href="/works/project/" + project.slug)= project.title
+						if i < data.activity.works.length - 1
+							| , 
+						else

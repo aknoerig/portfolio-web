@@ -1,16 +1,28 @@
 extends ../layouts/default
 
 mixin activity(activity)
-	.works-project.col-sm-3.col-md-2
+	.works-project.col-sm-3.col-md-2(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
 		a.thumbnail(href='/activities/activity/' + activity.slug)
 			img(src=activity._.keyImage.fill(200,110) alt=activity.title).img-responsive
 			.caption
 				h4= activity.title
-				if activity.category
-					p= activity.category.name
+				p
+					if activity.subtitle
+						= activity.subtitle
+						|  
+					if activity.place
+						| @ 
+						= activity.place
+					//if activity.location
+						| , 
+						= activity.location
+					if activity.date
+						br
+						= activity._.date.format('MM.YYYY')
+
 
 mixin activity-media(activity)
-	.media
+	.media(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
 		a.media-left(href='/activities/activity/' + activity.slug)
 			img(src=activity._.keyImage.fill(100,100) alt=activity.title).img-responsive
 		.media-body
@@ -18,7 +30,7 @@ mixin activity-media(activity)
 			p= activity.category.name
 
 mixin activity-list(activity)
-	.activity(data-ks-editable=editable(user, { list: 'Project', id: activity.id }))
+	.activity(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
 		h2: a(href='/activities/activity/' + activity.slug)= activity.title
 		p.lead.text-muted Posted 
 			if activity.publishedDate

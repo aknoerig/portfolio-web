@@ -177,6 +177,10 @@ a {
     }
   }
 
+  .affix-top, .affix {
+    position: static;
+  }
+
   aside {
     font-size: 14pt;
     text-align: right;
@@ -194,6 +198,34 @@ a {
       a {
         font-style: italic;
       }
+    }
+
+    .link {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  @media (min-width: @screen-xs) {
+    aside {
+      text-align: left;
+    }
+  }
+  @media (min-width: @screen-sm) {
+    aside.affix {
+      top: 70px;
+      position: fixed;
+      width: 160px;
+    }
+  }
+  @media (min-width: @screen-md) {
+    aside.affix {
+      width: 210px;
+    }
+  }
+  @media (min-width: @screen-lg) {
+    aside.affix {
+      width: 260px;
     }
   }
 
@@ -243,12 +275,11 @@ a {
     }
   }
 
-  .sidenav.affix {
-      top: 70px;
-  }
-  .sidenav.affix-top {
-  }
-  .sidenav.affix-bottom {
+  @media (min-width: @screen-sm) {
+    .sidenav.affix {
+        top: 70px;
+        position: fixed;
+    }
   }
   .sidenav {
 
