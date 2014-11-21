@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 		var q = keystone.list('Project').model.findOne({
 			state: 'published',
 			slug: locals.filters.project
-		}).populate('author category partners clients industires technologies interactions activities publications');
+		}).populate('author category partners clients industries technologies interactions activities publications');
 		
 		q.exec(function(err, result) {
 			locals.data.project = result;

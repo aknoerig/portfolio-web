@@ -13,7 +13,7 @@ block intro
 block content
 	.container: .row
 		.col-sm-3.col-md-3
-			aside(data-spy="affix" data-offset-top="100" data-offset-bottom="100")
+			aside(data-spy="affix" data-offset-top="110" data-offset-bottom="150")
 				p.sub= data.project.innovation
 				p.meta
 					//- if data.project.category == "Consulting"
@@ -24,7 +24,7 @@ block content
 							br
 					if data.project.role
 						| as #{data.project.role}
-						br
+						//br
 					if data.project.partners && data.project.partners.length
 						| with 
 						each partner, i in data.project.partners
@@ -40,7 +40,7 @@ block content
 							if i < data.project.clients.length - 1
 								| , 
 							else
-								br
+								//br
 					if data.project.fromDate
 						| in #{data.project._.fromDate.format('YYYY')} 
 				if data.project.link
@@ -48,8 +48,16 @@ block content
 						| &rarr; 
 						a(href=data.project.link, target="_blank")= data.project._.link.format()
 				p.tags
+					if data.project.industries && data.project.industries.length
+						| Industries: 
+						each industry, i in data.project.industries
+							a(href=industry.key)= industry.name
+							if i < data.project.industries.length - 1
+								|  | 
+							else
+								br
 					if data.project.technologies && data.project.technologies.length
-						//| Technologies:  
+						| Technologies:  
 						each tech, i in data.project.technologies
 							a(href=tech.key)= tech.name
 							if i < data.project.technologies.length - 1
@@ -57,7 +65,7 @@ block content
 							else
 								br
 					if data.project.interactions && data.project.interactions.length
-						//| Interactions:  
+						| Interactions:  
 						each interaction, i in data.project.interactions
 							a(href=interaction.key)= interaction.name
 							if i < data.project.interactions.length - 1
