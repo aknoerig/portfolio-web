@@ -1,5 +1,8 @@
 extends ../layouts/default
 
+block css
+	link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet")
+
 block intro
 	.container
 		h1 Contact
@@ -8,21 +11,16 @@ block content
 	.container 
 		.row
 			.col-sm-9.col-md-6
-				p
-					br
-					br
-					br
-					strong Andr&eacute; Kn&ouml;rig
-					br
+				//h4 Andr&eacute; Kn&ouml;rig
+				//p
 					| Rheinsberger Str. 6
 					br
 					| 10115 Berlin
 					br
-					br
-					br
+				p I live and work in Berlin, Germany.
 				.row
 					.col-sm-6.col-md-6
-						p Contact
+						h4 Say hello!
 						p
 							i.fa.fa-phone
 							a(href="tel:+491636190496")  +49 163 6190496
@@ -35,7 +33,7 @@ block content
 							a(href="http://twitter.com/aknoerig" target="_blank") @aknoerig
 
 					.col-sm-6.col-md-6
-						p Connect
+						h4 Connect
 						p
 							i.fa.fa-linkedin
 							|  
@@ -48,11 +46,12 @@ block content
 							i.fa.fa-github
 							|  
 							a(href="https://github.com/aknoerig" target="_blank") github
+				
 			.col-sm-9.col-md-6
 				if enquirySubmitted
 					h3 Thanks for getting in touch.
 				else
-					h5 Leave a message
+					h4 Leave a message
 					form(method='post')
 						input(type='hidden', name='action', value='contact')
 						.form-group(class=validationErrors.name ? 'has-error' : null)

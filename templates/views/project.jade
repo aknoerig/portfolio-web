@@ -8,14 +8,14 @@ block intro
 			h2 Invalid Project.
 		else
 			h1= data.project.title
-				small= data.project.innovation
 
 
 block content
 	.container: .row
 		.col-sm-3.col-md-3
 			aside
-				.meta
+				p.sub= data.project.innovation
+				p.meta
 					//- if data.project.category == "Consulting"
 					//- if data.project.category
 							| A 
@@ -43,44 +43,47 @@ block content
 								br
 					if data.project.fromDate
 						| in #{data.project._.fromDate.format('YYYY')} 
-				.tags
+				if data.project.link
+					p.link
+						| &rarr; 
+						a(href=data.project.link, target="_blank")= data.project._.link.format()
+				p.tags
 					if data.project.technologies && data.project.technologies.length
-						| Technologies:  
+						//| Technologies:  
 						each tech, i in data.project.technologies
 							a(href=tech.key)= tech.name
 							if i < data.project.technologies.length - 1
-								| , 
+								|  | 
 							else
 								br
 					if data.project.interactions && data.project.interactions.length
-						| Interactions:  
+						//| Interactions:  
 						each interaction, i in data.project.interactions
 							a(href=interaction.key)= interaction.name
 							if i < data.project.interactions.length - 1
-								| , 
+								|  | 
 							else
 								br
-				if data.project.link
-					.link
-						a(href=data.project.link, target="_blank")= data.project._.link.format()
-		.col-sm-8.col-sm-offset-1.col-md-9.col-md-offset-0
+		.col-sm-8.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
 				if data.project.keyImage.exists
-					.image-wrap: img(src=data.project._.keyImage.fit(750,450)).img-responsive
+					.img-key: img(src=data.project._.keyImage.fit(750,450)).img-responsive
 				.lead!= data.project.content.brief
 				!= data.project.content.full
 
 			if data.project.gallery.length
-				.row
+				.row.gallery
+					hr
 					//-if data.project.keyImage.exists
 						.col-sm-4.col-md-4.gallery-image: img(src=data.project._.keyImage.limit(400,300))
 					each image in data.project.gallery
 						.col-xs-6.col-sm-4.col-md-3: a(href=image.url)
-							img(src=image.fill(200,150))
+							img(src=image.fill(200,120)).img-responsive
 
 			if data.project.activities && data.project.activities.length
-				.row.related
-					h3 Related activities
+				.related
+					hr
+					h4 Related activities
 					each activity, i in data.project.activities
 						a(href="/activities/activity/" + activity.slug)= activity.title
 						if i < data.project.activities.length - 1

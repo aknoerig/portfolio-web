@@ -3,7 +3,7 @@
 @brand-primary: #333;
 
 @body-bg: #fff;
-@text-color: #888;
+@text-color: #666;
 @headings-color: #000;
 @link-color: #000;
 @link-hover-color: #000;
@@ -14,6 +14,7 @@
 @font-family-base: @font-family-serif;
 @font-size-base: 12pt;
 @headings-font-family: @font-family-sans-serif;
+@icon-font-path: none;
 
 @border-radius-base: 0;
 @border-radius-small: 0;
@@ -54,7 +55,15 @@ a {
     -webkit-box-shadow: none;  
     -moz-box-shadow: none;  
     box-shadow: none;
+    border-bottom: 1px solid #ddd;
     
+    .navbar-brand {
+      font-size: 11pt;
+      border-bottom: none;
+      //padding-right: 2px;
+      //padding-left: 2px;
+      //margin-left: 0px !important;
+    }
  
     .navbar-nav > li > a {
       border-bottom: 1px solid transparent;
@@ -62,21 +71,13 @@ a {
 
     .navbar-nav > li > a:hover {
       color: @link-color;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #333;
     }
  
     .navbar-nav > .active > a, 
     .navbar-nav > .active > a:hover, 
     .navbar-nav > .active > a:focus {
       color: @link-color;
-    }
- 
-    .navbar-brand {
-      font-size: 11pt;
-      border-bottom: 1px solid #fff;
-      //padding-right: 2px;
-      //padding-left: 2px;
-      //margin-left: 0px !important;
     }
 }
 
@@ -98,15 +99,26 @@ a {
 #body {
 
   -webkit-font-smoothing: antialiased;
-  font-weight: 100;
+  -moz-osx-font-smoothing: grayscale;
+
+  -webkit-animation: fadein 0.8s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 0.8s; /* Firefox < 16 */
+    -ms-animation: fadein 0.8s; /* Internet Explorer */
+     -o-animation: fadein 0.8s; /* Opera < 12.1 */
+        animation: fadein 0.8s;
+
+  h1 {
+    margin-bottom: 12pt;
+  }
 
   h2 {
     font-size: 16pt;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     line-height: 20px;
     padding-top: 2px;
   }
 
+/*
   h3 {
     font-family: 'ChaparralProRegular', serif;
     font-size: 14pt;
@@ -114,7 +126,7 @@ a {
     line-height: 20px;
     text-transform: none;
   }
-
+*/
   article {
 
     h2 {
@@ -163,6 +175,30 @@ a {
     button {
       font-family: @headings-font-family;
     }
+  }
+
+  aside {
+    font-size: 14pt;
+    text-align: right;
+    padding-right: 25px;
+
+    .sub {
+
+    }
+
+    .meta {
+
+    }
+
+    .tags {
+      a {
+        font-style: italic;
+      }
+    }
+  }
+
+  .img-key {
+    margin-bottom: 1em;
   }
 
   .nav {
@@ -283,8 +319,8 @@ a {
 
 /* footer */
 #footer {
-  color: #bbb;
-  border-top: 1px solid #CCC;
+  color: #999;
+  border-top: 1px solid #ddd;
   margin-top: 1.5em;
   padding-top: 1.5em;
   padding-bottom: 1em;
@@ -294,4 +330,36 @@ a {
     text-decoration: none;
     border-bottom: 1px solid black;
   }
+}
+
+
+/* animation parameters */
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

@@ -34,7 +34,6 @@ html
 		meta(property="og:image" content="http://andreknoerig.de/images/favicons/favicon-256.png")
 
 		link(href="/styles/site.min.css",rel="stylesheet")
-		link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet")
 
 		if user && user.canAccessKeystone
 			//- This file provides the default styling for the KeystoneJS Content Editor
@@ -91,10 +90,14 @@ html
 
 
 		//- FOOTER
-		.container: #footer
-			p 
-				span &copy; #{moment().format('YYYY')} André Knörig &mdash; <i>Humanizing Technology since 1999.</i>
-				span.pull-right <a href="/imprint" title="Imprint">Imprint &amp; Privacy</a>
+		#footer.container-fluid
+			.container
+				p 
+					span &copy; #{moment().format('YYYY')} André Knörig &mdash; <i>Humanizing Technology since 1999.</i>
+					span.pull-right 
+						a(href="/contact" title="Contact") Contact
+						| , 
+						a(href="/imprint" title="Imprint") Imprint
 
 
 		//- JAVASCRIPT
