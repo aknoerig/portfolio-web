@@ -33,14 +33,14 @@ html
 		meta(name="msapplication-config" content="/images/favicons/browserconfig.xml")
 		meta(property="og:image" content="http://andreknoerig.de/images/favicons/favicon-256.png")
 
-		link(href="/styles/site.min.css",rel="stylesheet")
-
 		if user && user.canAccessKeystone
 			//- This file provides the default styling for the KeystoneJS Content Editor
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
 
 		//- Include template-specific stylesheets by extending the css block
 		block css
+
+		link(href="/styles/site.min.css",rel="stylesheet")
 
 		//- Add any other template-specific HEAD tags by extending the head block
 		block head

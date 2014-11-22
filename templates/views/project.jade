@@ -97,3 +97,33 @@ block content
 						if i < data.project.activities.length - 1
 							| , 
 						else
+
+block css
+	link(rel="stylesheet", href="/js/lib/magnific-popup.css")
+
+block js
+	if data.project.gallery.length
+		script(src="/js/lib/jquery.magnific-popup.min.js")
+
+		script.
+			$(document).ready(function() {
+				$('.gallery').magnificPopup({
+					delegate: 'a',
+					type: 'image',
+					closeBtnInside: false,
+					mainClass: 'mfp-with-zoom mfp-img-mobile',
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1],
+						arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+					},
+					zoom: {
+						enabled: true,
+						duration: 300,
+						opener: function(element) {
+							return element.find('img');
+						}
+					}
+				});
+			});
