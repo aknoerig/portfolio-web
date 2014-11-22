@@ -22,8 +22,8 @@ block content
 							a(href='/works/' + data.activity.category.key)= data.activity.category.name 
 							|  activity
 							br
-					if data.activity.fromDate
-						| on #{data.activity._.date.format('YYYY')} 
+					if data.activity.date
+						| on #{data.activity._.date.format('MMMM Do, YYYY')} 
 						br
 					if data.activity.place
 						| at 

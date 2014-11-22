@@ -88,7 +88,7 @@ a {
     }
     .navbar-brand {
       text-align: center;
-      width: 80%;
+      width: 85%;
     }
 
   }
@@ -104,6 +104,13 @@ a {
   padding-top: 20px;
   padding-bottom: 50px;
   width: 80%;
+}
+
+@media (max-width: @screen-sm) {
+  .intro h1 {
+    padding-top: 0;
+    width: 100%;
+  }  
 }
 
 
@@ -326,10 +333,37 @@ a {
 
   .activities {
     .item {
-      width: 15%;
+      width: 175px;
+      height: 230px;
     }
     .item.x2 {
-      width: 30%;
+      width: 175*2+15px;
+      height: 460px;
+    }
+
+    @media (max-width: @screen-lg) {
+      .item {
+        width: 175px;
+      }
+      .item.x2 {
+        width: 175*2+15px;
+      }
+    }
+    @media (max-width: @screen-md) {
+      .item {
+        width: 175px;
+      }
+      .item.x2 {
+        width: 175*2+15px;
+      }
+    }
+    @media (max-width: @screen-sm) {
+      .item {
+        width: 45%;
+      }
+      .item.x2 {
+        width: 90%;
+      }
     }
   }
 
@@ -344,7 +378,7 @@ a {
     }
 
     h4 {
-      height: 45px;
+      //height: 45px;
       margin-top: 5pt;
       margin-bottom: 5pt;
       //white-space: nowrap;
@@ -358,11 +392,11 @@ a {
       line-height: normal;
 
       .description {
-        height: 42px;
+        //height: 42px;
         //white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-bottom: 0;
+        margin-bottom: 5pt;
       }
 
       .date {

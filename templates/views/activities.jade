@@ -20,7 +20,7 @@ mixin activity(activity)
 							= activity.location
 					p.date
 						if activity.date
-							= activity._.date.format('D.M.YYYY')
+							= activity._.date.format('MMM Do YYYY')
 	else
 		//.col-xs-6.col-sm-3.col-md-3.col-lg-2
 		.item(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
@@ -40,7 +40,7 @@ mixin activity(activity)
 							= activity.location
 					p.date
 						if activity.date
-							= activity._.date.format('D.M.YYYY')
+							= activity._.date.format('MMM Do YYYY')
 
 
 mixin activity-media(activity)
@@ -89,7 +89,7 @@ block content
 					a(href='/activities/' + cat.key)= cat.name
 			
 
-	.container: .row
+	.container: .row: .col-xs-12
 		
 			if filters.category && !data.category
 				h3.text-muted Invalid Category.

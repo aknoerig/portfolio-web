@@ -23,7 +23,7 @@ block content
 							|  project
 							br
 					if data.project.role
-						| as #{data.project.role}
+						| as #{data.project.role} 
 						//br
 					if data.project.partners && data.project.partners.length
 						| with 
@@ -40,9 +40,9 @@ block content
 							if i < data.project.clients.length - 1
 								| , 
 							else
-								//br
-					if data.project.fromDate
-						| in #{data.project._.fromDate.format('YYYY')} 
+								br
+					if data.project.toDate
+						| in #{data.project._.toDate.format('YYYY')} 
 				if data.project.link
 					p.link
 						| &rarr; 
