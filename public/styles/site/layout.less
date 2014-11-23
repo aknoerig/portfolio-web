@@ -87,8 +87,12 @@ a {
       float: left;
     }
     .navbar-brand {
+      margin-left: auto;
+      margin-right: auto;
+      width: 250px;
+      float: none;
+      display: block;
       text-align: center;
-      width: 85%;
     }
 
   }
@@ -147,6 +151,10 @@ a {
       margin-bottom: 5pt;
     }
 
+    img {
+      width: 100%;
+    }
+
   }
 
   a {
@@ -193,6 +201,7 @@ a {
     position: static;
   }
 
+
   aside {
     font-size: 14pt;
     text-align: right;
@@ -219,7 +228,7 @@ a {
       text-overflow: ellipsis;
     }
   }
-  @media (min-width: @screen-xs) {
+  @media (max-width: @screen-sm) {
     aside {
       text-align: left;
     }
@@ -262,6 +271,7 @@ a {
     }
   }
 
+
   .nav-tabs {
     margin-bottom: 1em;
 
@@ -290,6 +300,7 @@ a {
       border-bottom: 1px solid;
     }
   }
+
 
   @media (min-width: @screen-sm) {
     .sidenav.affix {
@@ -364,6 +375,12 @@ a {
       .item.x2 {
         width: 90%;
       }
+    }
+  }
+
+  .gallery {
+    .item {
+      margin-bottom: 20px;
     }
   }
 

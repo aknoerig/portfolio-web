@@ -5,7 +5,7 @@ mixin activity(activity)
 		//.col-xs-12.col-sm-6.col-md-6.col-lg-4
 		.item.x2(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
 			a.thumbnail(href='/activities/activity/' + activity.slug)
-				img(src=activity._.keyImage.fill(400,400, {gravity:'center'}) alt=activity.title).img-responsive
+				img(src=activity._.keyImage.fill(400,370, {gravity:'center'}) alt=activity.title).img-responsive
 				.caption
 					h4= activity.title
 					p.description

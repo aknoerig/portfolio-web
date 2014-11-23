@@ -41,7 +41,7 @@ block content
 		.col-sm-8.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
 				if data.activity.keyImage.exists
-					.img-key: img(src=data.activity._.keyImage.fit(750,450)).img-responsive
+					.img-key: img(src=data.activity._.keyImage.limit(750,450, {gravity:'center'})).img-responsive
 				.lead!= data.activity.content.brief
 				!= data.activity.content.extended
 
@@ -63,3 +63,34 @@ block content
 						if i < data.activity.works.length - 1
 							| , 
 						else
+
+
+block css
+	link(rel="stylesheet", href="/js/lib/magnific-popup.css")
+
+block js
+	if data.activity.gallery.length
+		script(src="/js/lib/jquery.magnific-popup.min.js")
+
+		script.
+			$(document).ready(function() {
+				$('.gallery').magnificPopup({
+					delegate: 'a',
+					type: 'image',
+					closeBtnInside: false,
+					mainClass: 'mfp-with-zoom mfp-img-mobile',
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1],
+						arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+					},
+					zoom: {
+						enabled: true,
+						duration: 300,
+						opener: function(element) {
+							return element.find('img');
+						}
+					}
+				});
+			});
