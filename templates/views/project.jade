@@ -51,7 +51,7 @@ block content
 					if data.project.industries && data.project.industries.length
 						| Industries: 
 						each industry, i in data.project.industries
-							a(href=industry.key)= industry.name
+							a(href="/tags/"+industry.key)= industry.name
 							if i < data.project.industries.length - 1
 								|  | 
 							else
@@ -59,7 +59,7 @@ block content
 					if data.project.technologies && data.project.technologies.length
 						| Technologies:  
 						each tech, i in data.project.technologies
-							a(href=tech.key)= tech.name
+							a(href="/tags/"+tech.key)= tech.name
 							if i < data.project.technologies.length - 1
 								|  | 
 							else
@@ -67,7 +67,7 @@ block content
 					if data.project.interactions && data.project.interactions.length
 						| Interactions:  
 						each interaction, i in data.project.interactions
-							a(href=interaction.key)= interaction.name
+							a(href="/tags/"+interaction.key)= interaction.name
 							if i < data.project.interactions.length - 1
 								|  | 
 							else
