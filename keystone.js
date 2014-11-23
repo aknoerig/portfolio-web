@@ -100,7 +100,7 @@ keystone.set('email tests', require('./routes/emails'));
 keystone.set('nav', {
 	'works': ['projects', 'project-categories'],
 	'activities': ['activities', 'activity-categories', 'publications', 'publication-categories'],
-	'tags': ['industries', 'organizations', 'interactions', 'technologies'],
+	'tags': ['organizations', 'industries', 'interactions', 'technologies'],
 	'blog': ['posts', 'post-categories'],
 	'contact': 'enquiries',
 	'users': 'users'

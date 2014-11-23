@@ -14,8 +14,6 @@ var Project = new keystone.List('Project', {
 Project.add({
 	title: { type: String, required: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	author: { type: Types.Relationship, ref: 'User', index: true },
-	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
 	category: { type: Types.Relationship, ref: 'ProjectCategory' },
 	featured: { type: Boolean, default: false, index: true },
 	fromDate: { type: Types.Date },
@@ -45,5 +43,5 @@ Project.schema.virtual('content.full').get(function() {
 
 Project.relationship({ ref: 'Activity', path: 'works' });
 
-Project.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Project.defaultColumns = 'title, clients|20%, toDate|20%, state|20%, featured';
 Project.register();

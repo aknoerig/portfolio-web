@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 mixin project(project)
-	.works-project.col-sm-6.col-md-4(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+	.item.col-sm-6.col-md-4(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
 		a.thumbnail(href='/works/project/' + project.slug)
 			img(src=project._.keyImage.fill(400,240) alt=project.title).img-responsive
 			.caption

@@ -34,4 +34,6 @@ Publication.schema.virtual('content.full').get(function() {
 
 Publication.relationship({ ref: 'Project', path: 'publications' });
 
+Publication.defaultColumns = 'title, category, year, state, featured';
+
 Publication.register();

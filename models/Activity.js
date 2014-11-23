@@ -37,4 +37,6 @@ Activity.schema.virtual('content.full').get(function() {
 
 Activity.relationship({ ref: 'Project', path: 'activities' });
 
+Activity.defaultColumns = 'title, category, place, date, state, featured';
+
 Activity.register();

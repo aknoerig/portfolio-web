@@ -19,4 +19,7 @@ Organization.add({
 Organization.relationship({ ref: 'Project', path: 'partners' });
 Organization.relationship({ ref: 'Project', path: 'clients' });
 
+
+Organization.defaultColumns = 'name, link';
+
 Organization.register();
