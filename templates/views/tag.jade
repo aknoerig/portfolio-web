@@ -1,0 +1,63 @@
+extends ../layouts/default
+
+mixin project(project)
+	.item.col-sm-6.col-md-4(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+		a.thumbnail(href='/works/project/' + project.slug)
+			img(src=project._.keyImage.fill(400,240) alt=project.title).img-responsive
+			.caption
+				h2= project.title
+				p= 	project.innovation
+
+block intro
+	.container.intro
+		h1= data.tag
+
+block content
+
+	//.container: .row
+		ul.nav.nav-tabs
+			li(class=!data.category ? 'active' : '')
+				a(href='/works') All
+			each cat in data.categories
+				li(class=data.category && data.category.id == cat.id ? 'active' : '')
+					a(href='/works/' + cat.key)= cat.name
+			
+
+	.container: .row
+		
+			if filters.tag && !data.tag
+				h3.text-muted Invalid Tag.
+			else
+				if data.projects.results.length
+					//-if data.projects.totalPages > 1
+						h4.text-weight-normal Showing 
+							strong #{data.projects.first}
+							|  to 
+							strong #{data.projects.last}
+							|  of 
+							strong #{data.projects.total}
+							|  projects.
+					//-else
+						h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
+					.works
+						each project in data.projects.results
+							+project(project)
+					
+					if data.projects.totalPages > 1
+						ul.pagination
+							if data.projects.previous
+								li: a(href='?page=' + data.projects.previous): span.glyphicon.glyphicon-chevron-left
+							else
+								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+							each p, i in data.projects.pages
+								li(class=data.projects.currentPage == p ? 'active' : null)
+									a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
+							if data.projects.next
+								li: a(href='?page=' + data.projects.next): span.glyphicon.glyphicon-chevron-right
+							else
+								li.disabled: a(href='?page=' + data.projects.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+				else
+					if data.tag
+						h3.text-muted There are no projects for the tag #{data.tag.name}.
+					else
+						h3.text-muted There are no projects yet.
