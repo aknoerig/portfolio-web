@@ -422,6 +422,28 @@ a {
     }
   }
 
+
+  .pagination-frame {
+    text-align: center;
+  }
+  .pagination {
+    margin-left: auto;
+    margin-right: auto;
+
+    li {
+      text-align: center;
+    }
+
+    li > a {
+      border: none;
+    }
+    li > a:hover {
+      background: none;
+      color: @link-color;
+      border-bottom: 1px solid #333;
+    }
+  }
+
 }
 
 
@@ -453,6 +475,9 @@ button.mfp-close {
 }
 .mfp-counter {
   display: none;
+}
+img.mfp-img {
+  padding: 0;
 }
 /* arrow shape */
 .mfp-arrow:after, .mfp-arrow .mfp-a {
