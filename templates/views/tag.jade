@@ -1,0 +1,109 @@
+extends ../layouts/default
+
+mixin project(project)
+	.item.col-sm-6.col-md-4(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
+		a.thumbnail(href='/works/project/' + project.slug)
+			img(src=project._.keyImage.fill(400,240) alt=project.title).img-responsive
+			.caption
+				h2= project.title
+				p= 	project.innovation
+
+block intro
+	//if data.tag
+		.container.intro
+			h2 Works in 
+				span= data.property
+				|  / 
+				span= data.tag.name
+
+block content
+
+	.container
+		if data.industries && data.industries.length
+			.row.tagnav
+				.col-xs-12
+					h4 Industries
+					ul
+						each industry in data.industries
+							if data.tag && data.tag.id == industry.id
+								li.active
+									a(href='/tags/')= industry.name
+							else
+								li
+									a(href='/tags/' + industry.key)= industry.name
+
+		if data.interactions && data.interactions.length
+			.row.tagnav
+				.col-xs-12
+					h4 Interactions
+					ul
+						each ix in data.interactions
+							if data.tag && data.tag.id == ix.id
+								li.active
+									a(href='/tags/')= ix.name
+							else
+								li
+									a(href='/tags/' + ix.key)= ix.name
+
+		if data.technologies && data.technologies.length
+			.row.tagnav
+				.col-xs-12
+					h4 Technologies
+					ul
+						each tech in data.technologies
+							if data.tag && data.tag.id == tech.id
+								li.active
+									a(href='/tags/')= tech.name
+							else
+								li
+									a(href='/tags/' + tech.key)= tech.name
+
+		if data.tag
+			h2 Works in 
+				span= data.property
+				|  / 
+				span= data.tag.name
+
+
+	.container: .row
+		
+			if filters.tag && !data.tag
+				.col-xs-12
+					h3.text-muted Invalid Tag.
+			else
+				if data.projects.results.length
+					//-if data.projects.totalPages > 1
+						h4.text-weight-normal Showing 
+							strong #{data.projects.first}
+							|  to 
+							strong #{data.projects.last}
+							|  of 
+							strong #{data.projects.total}
+							|  projects.
+					//-else
+						h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
+					.works
+						each project in data.projects.results
+							+project(project)
+					
+					if data.projects.totalPages > 1
+						.clearfix
+						.pagination-frame
+							ul.pagination
+								if data.projects.previous
+									li: a(href='?page=' + data.projects.previous): &larr;
+								else
+									li.disabled: a(href='?page=' + 1): &larr;
+								each p, i in data.projects.pages
+									li(class=data.projects.currentPage == p ? 'active' : null)
+										a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
+								if data.projects.next
+									li: a(href='?page=' + data.projects.next): &rarr;
+								else
+									li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
+				else
+					.col-xs-12
+						if data.tag
+							h3.text-muted There are no projects in the category #{data.tag.name} yet. Time to get into this!
+						else
+							h3.text-muted There are no projects yet.

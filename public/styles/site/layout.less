@@ -350,7 +350,47 @@ a {
 
   }
 
+
+  .tagnav {
+
+    h4, h5, h6 {
+      margin: 0;
+      float: left;
+    }
+
+    ul {
+      margin-left: 110px;
+    }
+
+    li {
+      display: inline;
+
+      a {
+        color: @text-color;
+      }
+
+      a:hover {
+        color: @link-color;
+      }
+    }
+
+    li:after {
+      content: ' / ';
+    }
+
+    li.active a {
+      //font-family: 'ChaparralProBold', serif;
+      color: #000;
+      letter-spacing: 0.1em;
+    }
+
+  }
+
+
   .activities {
+    /*
+      packery grid
+    */
     /*
     .item {
       width: 175px;
