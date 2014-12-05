@@ -9,57 +9,67 @@ mixin project(project)
 				p= 	project.innovation
 
 block intro
-	if data.tag
+	//if data.tag
 		.container.intro
-			h2 Works for 
+			h2 Works in 
 				span= data.property
 				|  / 
 				span= data.tag.name
 
 block content
 
-	.container: .row
+	.container
 		if data.industries && data.industries.length
-			.col-xs-12
-				h4 Industries
-				ul.tagnav
-					each industry in data.industries
-						if data.tag && data.tag.id == industry.id
-							li.active
-								a(href='/tags/')= industry.name
-						else
-							li
-								a(href='/tags/' + industry.key)= industry.name
+			.row.tagnav
+				.col-xs-12
+					h4 Industries
+					ul
+						each industry in data.industries
+							if data.tag && data.tag.id == industry.id
+								li.active
+									a(href='/tags/')= industry.name
+							else
+								li
+									a(href='/tags/' + industry.key)= industry.name
 
 		if data.interactions && data.interactions.length
-			.col-xs-12
-				h4 Interactions
-				ul.tagnav
-					each ix in data.interactions
-						if data.tag && data.tag.id == ix.id
-							li.active
-								a(href='/tags/')= ix.name
-						else
-							li
-								a(href='/tags/' + ix.key)= ix.name
+			.row.tagnav
+				.col-xs-12
+					h4 Interactions
+					ul
+						each ix in data.interactions
+							if data.tag && data.tag.id == ix.id
+								li.active
+									a(href='/tags/')= ix.name
+							else
+								li
+									a(href='/tags/' + ix.key)= ix.name
 
 		if data.technologies && data.technologies.length
-			.col-xs-12
-				h4 Technologies
-				ul.tagnav
-					each tech in data.technologies
-						if data.tag && data.tag.id == tech.id
-							li.active
-								a(href='/tags/')= tech.name
-						else
-							li
-								a(href='/tags/' + tech.key)= tech.name
+			.row.tagnav
+				.col-xs-12
+					h4 Technologies
+					ul
+						each tech in data.technologies
+							if data.tag && data.tag.id == tech.id
+								li.active
+									a(href='/tags/')= tech.name
+							else
+								li
+									a(href='/tags/' + tech.key)= tech.name
+
+		if data.tag
+			h2 Works in 
+				span= data.property
+				|  / 
+				span= data.tag.name
 
 
 	.container: .row
 		
 			if filters.tag && !data.tag
-				h3.text-muted Invalid Tag.
+				.col-xs-12
+					h3.text-muted Invalid Tag.
 			else
 				if data.projects.results.length
 					//-if data.projects.totalPages > 1
@@ -92,7 +102,8 @@ block content
 								else
 									li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
 				else
-					if data.category
-						h3.text-muted There are no projects in the category #{data.category.name}.
-					else
-						h3.text-muted There are no projects yet.
+					.col-xs-12
+						if data.tag
+							h3.text-muted There are no projects in the category #{data.tag.name} yet. Time to get into this!
+						else
+							h3.text-muted There are no projects yet.

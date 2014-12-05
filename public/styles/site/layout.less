@@ -350,15 +350,28 @@ a {
 
   }
 
+
   .tagnav {
+
+    h4, h5, h6 {
+      margin: 0;
+      float: left;
+    }
+
+    ul {
+      margin-left: 110px;
+    }
 
     li {
       display: inline;
 
       a {
-        color: #666;
+        color: @text-color;
       }
 
+      a:hover {
+        color: @link-color;
+      }
     }
 
     li:after {
@@ -373,7 +386,11 @@ a {
 
   }
 
+
   .activities {
+    /*
+      packery grid
+    */
     /*
     .item {
       width: 175px;
