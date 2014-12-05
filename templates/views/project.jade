@@ -28,7 +28,7 @@ block content
 					if data.project.partners && data.project.partners.length
 						| with 
 						each partner, i in data.project.partners
-							a(href=partner.link)= partner.name
+							a(href=partner.link, target="_blank")= partner.name
 							if i < data.project.partners.length - 1
 								| , 
 							else
@@ -36,13 +36,18 @@ block content
 					if data.project.clients && data.project.clients.length
 						| for 
 						each client, i in data.project.clients
-							a(href=client.link)= client.name
+							a(href=client.link, target="_blank")= client.name
 							if i < data.project.clients.length - 1
 								| , 
 							else
 								br
 					if data.project.toDate
 						| in #{data.project._.toDate.format('YYYY')} 
+				if data.project.clients && data.project.clients.length
+					p.logo
+						each client, i in data.project.clients
+							img(src=client._.logo.limit(200,70))
+							br
 				if data.project.link
 					p.link
 						| &rarr; 
@@ -51,7 +56,7 @@ block content
 					if data.project.industries && data.project.industries.length
 						| Industries: 
 						each industry, i in data.project.industries
-							a(href=industry.key)= industry.name
+							a(href="/tags/"+industry.key)= industry.name
 							if i < data.project.industries.length - 1
 								|  | 
 							else
@@ -59,7 +64,7 @@ block content
 					if data.project.technologies && data.project.technologies.length
 						| Technologies:  
 						each tech, i in data.project.technologies
-							a(href=tech.key)= tech.name
+							a(href="/tags/"+tech.key)= tech.name
 							if i < data.project.technologies.length - 1
 								|  | 
 							else
@@ -67,7 +72,7 @@ block content
 					if data.project.interactions && data.project.interactions.length
 						| Interactions:  
 						each interaction, i in data.project.interactions
-							a(href=interaction.key)= interaction.name
+							a(href="/tags/"+interaction.key)= interaction.name
 							if i < data.project.interactions.length - 1
 								|  | 
 							else
@@ -85,8 +90,8 @@ block content
 					//-if data.project.keyImage.exists
 						.col-sm-4.col-md-4.gallery-image: img(src=data.project._.keyImage.limit(400,300))
 					each image in data.project.gallery
-						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.url)
-							img(src=image.fill(200,120)).img-responsive
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.limit(1200,1200, {gravity:'center'}))
+							img(src=image.fill(200,120, {gravity:'center'})).img-responsive
 
 			if data.project.activities && data.project.activities.length
 				.related

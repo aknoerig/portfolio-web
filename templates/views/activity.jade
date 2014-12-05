@@ -51,8 +51,8 @@ block content
 					//-if data.activity.keyImage.exists
 						.col-sm-4.col-md-4.gallery-image: img(src=data.activity._.keyImage.limit(400,300))
 					each image in data.activity.gallery
-						.item.col-xs-6.col-sm-4.col-md-3: a(href=image.url)
-							img(src=image.fill(200,120)).img-responsive
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.limit(1200,1200, {gravity:'center'}))
+							img(src=image.fill(200,120, {gravity:'center'})).img-responsive
 
 			if data.activity.works && data.activity.works.length
 				.related
