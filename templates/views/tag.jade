@@ -9,26 +9,39 @@ mixin project(project)
 				p= 	project.innovation
 
 block intro
-	.container.intro
-		h1= data.tag
+	if data.tag
+		.container.intro
+			h1= data.tag.name
 
 block content
 
-	//.container: .row
-		ul.nav.nav-tabs
-			li(class=!data.category ? 'active' : '')
-				a(href='/works') All
-			each cat in data.categories
-				li(class=data.category && data.category.id == cat.id ? 'active' : '')
-					a(href='/works/' + cat.key)= cat.name
-			
+	.container: .row
+		if data.industries && data.industries.length
+			h4 Industries
+			ul.tags
+				each industry in data.industries
+					li(class=data.tag && data.tag.id == industry.id ? 'active' : '')
+						a(href='/tags/' + industry.key)= industry.name
+		if data.technologies && data.technologies.length
+			h4 Technologies
+			ul.tags
+				each tech in data.technologies
+					li(class=data.tag && data.tag.id == tech.id ? 'active' : '')
+						a(href='/tags/' + tech.key)= tech.name
+		if data.interactions && data.interactions.length
+			h4 Interactions
+			ul.tags
+				each ix in data.interactions
+					li(class=data.tag && data.tag.id == ix.id ? 'active' : '')
+						a(href='/tags/' + ix.key)= ix.name
+
 
 	.container: .row
 		
 			if filters.tag && !data.tag
 				h3.text-muted Invalid Tag.
 			else
-				if data.projects.results.length
+				if data.projects.results && data.projects.results.length
 					//-if data.projects.totalPages > 1
 						h4.text-weight-normal Showing 
 							strong #{data.projects.first}
