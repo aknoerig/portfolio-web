@@ -11,29 +11,49 @@ mixin project(project)
 block intro
 	if data.tag
 		.container.intro
-			h1= data.tag.name
+			h2 Works for 
+				span= data.property
+				|  / 
+				span= data.tag.name
 
 block content
 
 	.container: .row
 		if data.industries && data.industries.length
-			h4 Industries
-			ul.tags
-				each industry in data.industries
-					li(class=data.tag && data.tag.id == industry.id ? 'active' : '')
-						a(href='/tags/' + industry.key)= industry.name
-		if data.technologies && data.technologies.length
-			h4 Technologies
-			ul.tags
-				each tech in data.technologies
-					li(class=data.tag && data.tag.id == tech.id ? 'active' : '')
-						a(href='/tags/' + tech.key)= tech.name
+			.col-xs-12
+				h4 Industries
+				ul.tagnav
+					each industry in data.industries
+						if data.tag && data.tag.id == industry.id
+							li.active
+								a(href='/tags/')= industry.name
+						else
+							li
+								a(href='/tags/' + industry.key)= industry.name
+
 		if data.interactions && data.interactions.length
-			h4 Interactions
-			ul.tags
-				each ix in data.interactions
-					li(class=data.tag && data.tag.id == ix.id ? 'active' : '')
-						a(href='/tags/' + ix.key)= ix.name
+			.col-xs-12
+				h4 Interactions
+				ul.tagnav
+					each ix in data.interactions
+						if data.tag && data.tag.id == ix.id
+							li.active
+								a(href='/tags/')= ix.name
+						else
+							li
+								a(href='/tags/' + ix.key)= ix.name
+
+		if data.technologies && data.technologies.length
+			.col-xs-12
+				h4 Technologies
+				ul.tagnav
+					each tech in data.technologies
+						if data.tag && data.tag.id == tech.id
+							li.active
+								a(href='/tags/')= tech.name
+						else
+							li
+								a(href='/tags/' + tech.key)= tech.name
 
 
 	.container: .row
@@ -41,7 +61,7 @@ block content
 			if filters.tag && !data.tag
 				h3.text-muted Invalid Tag.
 			else
-				if data.projects.results && data.projects.results.length
+				if data.projects.results.length
 					//-if data.projects.totalPages > 1
 						h4.text-weight-normal Showing 
 							strong #{data.projects.first}
@@ -57,20 +77,22 @@ block content
 							+project(project)
 					
 					if data.projects.totalPages > 1
-						ul.pagination
-							if data.projects.previous
-								li: a(href='?page=' + data.projects.previous): span.glyphicon.glyphicon-chevron-left
-							else
-								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
-							each p, i in data.projects.pages
-								li(class=data.projects.currentPage == p ? 'active' : null)
-									a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
-							if data.projects.next
-								li: a(href='?page=' + data.projects.next): span.glyphicon.glyphicon-chevron-right
-							else
-								li.disabled: a(href='?page=' + data.projects.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+						.clearfix
+						.pagination-frame
+							ul.pagination
+								if data.projects.previous
+									li: a(href='?page=' + data.projects.previous): &larr;
+								else
+									li.disabled: a(href='?page=' + 1): &larr;
+								each p, i in data.projects.pages
+									li(class=data.projects.currentPage == p ? 'active' : null)
+										a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
+								if data.projects.next
+									li: a(href='?page=' + data.projects.next): &rarr;
+								else
+									li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
 				else
-					if data.tag
-						h3.text-muted There are no projects for the tag #{data.tag.name}.
+					if data.category
+						h3.text-muted There are no projects in the category #{data.category.name}.
 					else
 						h3.text-muted There are no projects yet.
