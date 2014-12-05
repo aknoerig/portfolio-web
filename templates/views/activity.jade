@@ -41,7 +41,7 @@ block content
 		.col-sm-8.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
 				if data.activity.keyImage.exists
-					.img-key: img(src=data.activity._.keyImage.limit(750,450, {gravity:'center'})).img-responsive
+					.img-key: img(src=data.activity._.keyImage.limit(750,450, {gravity:'center'}))
 				.lead!= data.activity.content.brief
 				!= data.activity.content.extended
 

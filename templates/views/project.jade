@@ -46,7 +46,7 @@ block content
 				if data.project.clients && data.project.clients.length
 					p.logo
 						each client, i in data.project.clients
-							img(src=client._.logo.limit(200,70))
+							img(src=client._.logo.limit(200,60))
 							br
 				if data.project.link
 					p.link
@@ -82,7 +82,7 @@ block content
 				if data.project.keyImage.exists
 					.img-key: img(src=data.project._.keyImage.fit(750,450)).img-responsive
 				.lead!= data.project.content.brief
-				!= data.project.content.extended
+				.text!= data.project.content.extended
 
 			if data.project.gallery.length
 				.row.gallery
