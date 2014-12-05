@@ -43,6 +43,11 @@ block content
 								br
 					if data.project.toDate
 						| in #{data.project._.toDate.format('YYYY')} 
+				if data.project.clients && data.project.clients.length
+					p.logo
+						each client, i in data.project.clients
+							img(src=client._.logo.limit(200,70))
+							br
 				if data.project.link
 					p.link
 						| &rarr; 
