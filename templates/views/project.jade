@@ -28,7 +28,7 @@ block content
 					if data.project.partners && data.project.partners.length
 						| with 
 						each partner, i in data.project.partners
-							a(href=partner.link)= partner.name
+							a(href=partner.link, target="_blank")= partner.name
 							if i < data.project.partners.length - 1
 								| , 
 							else
@@ -36,7 +36,7 @@ block content
 					if data.project.clients && data.project.clients.length
 						| for 
 						each client, i in data.project.clients
-							a(href=client.link)= client.name
+							a(href=client.link, target="_blank")= client.name
 							if i < data.project.clients.length - 1
 								| , 
 							else
@@ -85,8 +85,8 @@ block content
 					//-if data.project.keyImage.exists
 						.col-sm-4.col-md-4.gallery-image: img(src=data.project._.keyImage.limit(400,300))
 					each image in data.project.gallery
-						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.url)
-							img(src=image.fill(200,120)).img-responsive
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.limit(1200,1200, {gravity:'center'}))
+							img(src=image.fill(200,120, {gravity:'center'})).img-responsive
 
 			if data.project.activities && data.project.activities.length
 				.related

@@ -162,9 +162,17 @@ a {
     img {
       transition: all 0.3s ease 0s;
       //opacity: 1;
-      //filter: grayscale(1);
+      filter: grayscale(1);
       -webkit-filter: grayscale(1);
     }
+
+    @media (max-width: @screen-sm) {
+      img {
+        filter: grayscale(0);
+        -webkit-filter: grayscale(0);
+      }
+    }
+
   }
 
   a:hover {
@@ -273,7 +281,7 @@ a {
 
 
   .nav-tabs {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 
     li {
       border: none;
@@ -343,6 +351,7 @@ a {
   }
 
   .activities {
+    /*
     .item {
       width: 175px;
       height: 230px;
@@ -376,6 +385,7 @@ a {
         width: 90%;
       }
     }
+    */
   }
 
   .gallery {
@@ -391,25 +401,25 @@ a {
       font-size: 16pt;
       letter-spacing: 0.5px;
       line-height: 20px;
-      padding-top: 2px;
+      margin-top: 14pt;
     }
 
     h4 {
-      //height: 45px;
-      margin-top: 5pt;
+      margin-top: 0;
       margin-bottom: 5pt;
-      //white-space: nowrap;
+      padding-top: 10pt;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .caption {
-      font-family: 'ChaparralProItalic', serif;
       font-size: 13pt;
       line-height: normal;
 
       .description {
-        //height: 42px;
+        font-family: 'ChaparralProItalic', serif;
+        height: 2.5em;
         //white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -418,8 +428,40 @@ a {
 
       .date {
         color: #000;
+        font-size: 11pt;
       }
     }
+  }
+
+
+  .thumbnail.featured {
+    img {
+      //filter: grayscale(0);
+      //-webkit-filter: grayscale(0);
+    }
+
+    .caption {
+      padding: 0px 12pt 5pt 12pt;
+      color: #ccc;
+      background: linear-gradient(to bottom, #202020, #333);
+      //background: #333;
+
+      //border-left: 1px solid #333;
+      //border-right: 1px solid #333;
+      //border-bottom: 1px solid #333;
+
+       h4 {
+        color: #fff;
+       }
+
+       .date {
+        color: #fff;
+       }
+    }
+  }
+  a.featured:hover {
+      //filter: grayscale(1);
+      //-webkit-filter: grayscale(1);
   }
 
 

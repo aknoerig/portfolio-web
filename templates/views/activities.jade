@@ -1,6 +1,26 @@
 extends ../layouts/default
 
 mixin activity(activity)
+		.col-xs-6.col-sm-3.col-md-3.col-lg-3(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
+			a.thumbnail(href='/activities/activity/' + activity.slug, class=activity.featured ? 'featured' : '')
+				img(src=activity._.keyImage.fill(300,160, {gravity:'center'}) alt=activity.title).img-responsive
+				.caption
+					h4= activity.title
+					p.description
+						if activity.subtitle
+							= activity.subtitle
+							|  
+						if activity.place
+							| @ 
+							= activity.place
+						//if activity.location
+							| , 
+							= activity.location
+					p.date
+						if activity.date
+							= activity._.date.format('MMM Do YYYY')
+
+mixin activity-packery(activity)
 	if activity.featured
 		//.col-xs-12.col-sm-6.col-md-6.col-lg-4
 		.item.x2(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
@@ -51,29 +71,6 @@ mixin activity-media(activity)
 			h4.media-heading= activity.title
 			p= activity.category.name
 
-mixin activity-list(activity)
-	.activity(data-ks-editable=editable(user, { list: 'Activity', id: activity.id }))
-		h2: a(href='/activities/activity/' + activity.slug)= activity.title
-		p.lead.text-muted Posted 
-			if activity.publishedDate
-				| on #{activity._.publishedDate.format('MMMM Do, YYYY')} 
-			if activity.categories && activity.categories.length
-				| in 
-				each cat, i in activity.categories
-					a(href='/activities/' + cat.key)= cat.name
-					if i < activity.categories.length - 1
-						| , 
-					else
-						|  
-			if activity.author
-				| by #{activity.author.name.first}
-		if activity.keyImage.exists
-			img(src=activity._.keyImage.fit(160,160)).img.pull-right
-		p!= activity.content.brief
-		if activity.content.extended
-			p.read-more: a(href='/activities/activity/' + activity.slug) Read more...
-
-
 block intro
 	//.container.intro
 		h1 What I'm up to.
@@ -105,23 +102,26 @@ block content
 							|  activities.
 					//-else
 						h4.text-weight-normal Showing #{utils.plural(data.activities.results.length, '* activity')}.
-					.activities.js-packery(data-packery-options='{ "itemSelector": ".item", "gutter": 15 }')
+					//.activities.js-packery(data-packery-options='{ "itemSelector": ".item", "gutter": 15 }')
+					.activities
 						each activity in data.activities.results
 							+activity(activity)
 					
 					if data.activities.totalPages > 1
-						ul.pagination
-							if data.activities.previous
-								li: a(href='?page=' + data.activities.previous): span.glyphicon.glyphicon-chevron-left
-							else
-								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
-							each p, i in data.activities.pages
-								li(class=data.activities.currentPage == p ? 'active' : null)
-									a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
-							if data.activities.next
-								li: a(href='?page=' + data.activities.next): span.glyphicon.glyphicon-chevron-right
-							else
-								li.disabled: a(href='?page=' + data.activities.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+						.clearfix
+						.pagination-frame
+							ul.pagination
+								if data.activities.previous
+									li: a(href='?page=' + data.activities.previous): &larr;
+								else
+									li.disabled: a(href='?page=' + 1): &larr;
+								each p, i in data.activities.pages
+									li(class=data.activities.currentPage == p ? 'active' : null)
+										a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
+								if data.activities.next
+									li: a(href='?page=' + data.activities.next): &rarr;
+								else
+									li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
 				else
 					if data.category
 						h3.text-muted There are no activities in the category #{data.category.name}.
@@ -129,4 +129,4 @@ block content
 						h3.text-muted There are no activities yet.
 
 block js
-	script(src="/js/lib/packery.pkgd.min.js")
+	//script(src="/js/lib/packery.pkgd.min.js")
