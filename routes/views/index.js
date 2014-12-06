@@ -1,4 +1,5 @@
-var keystone = require('keystone');
+var _ = require('underscore'),
+	keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
 	
@@ -14,7 +15,7 @@ exports = module.exports = function(req, res) {
 	}
 
 
-	// load featured projects	
+	// load 3 featured projects	
 	view.on('init', function(next) {
 		
 		keystone.list('Project').model.find()
@@ -27,7 +28,8 @@ exports = module.exports = function(req, res) {
 				if (err || !results.length) {
 					return next(err);
 				}
-				locals.data.projects = results;
+
+				locals.data.projects = _.chain(results).shuffle().first(3).value();
 				
 				next(err);
 			
