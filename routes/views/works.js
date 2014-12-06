@@ -27,17 +27,7 @@ exports = module.exports = function(req, res) {
 			
 			locals.data.categories = results;
 			
-			// Load the counts for each category
-			async.each(locals.data.categories, function(category, next) {
-				
-				keystone.list('Project').model.count().where('category').in([category.id]).exec(function(err, count) {
-					category.projectCount = count;
-					next(err);
-				});
-				
-			}, function(err) {
-				next(err);
-			});
+			next(err);
 			
 		});
 		

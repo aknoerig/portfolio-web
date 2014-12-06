@@ -52,16 +52,6 @@ block content
 				h3.text-muted Invalid Category.
 			else
 				if data.projects.results.length
-					//-if data.projects.totalPages > 1
-						h4.text-weight-normal Showing 
-							strong #{data.projects.first}
-							|  to 
-							strong #{data.projects.last}
-							|  of 
-							strong #{data.projects.total}
-							|  projects.
-					//-else
-						h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
 					.works
 						each project in data.projects.results
 							+project(project)
