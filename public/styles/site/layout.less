@@ -2,7 +2,7 @@
 
 @brand-primary: #333;
 
-@body-bg: #fff;
+@body-bg: #e6e4de;//#fff;
 @text-color: #666;
 @headings-color: #000;
 @link-color: #000;
@@ -25,6 +25,8 @@
 
 @input-color-placeholder: #ccc;
 
+@navbar-default-bg: #e6e4de;
+
 * {
   -webkit-font-feature-settings: "kern";
   -moz-font-feature-settings: "kern";
@@ -32,16 +34,26 @@
   font-feature-settings: "kern";
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   padding-top: 80px;
 }
+
 h1, nav, .filter, button {
   text-transform: uppercase;
   letter-spacing: 3px;
 }
+
 a {
   transition: all 0.3s ease 0s;
   border-bottom: 1px solid #eee;
+}
+
+em {
+  font-family: 'ChaparralProItalic', serif;
 }
 
 /* Navigation */
@@ -121,6 +133,11 @@ a {
 /* Content */
 
 #body {
+  /* fixed footer */
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -80px;
+  padding-bottom: 80px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;  
@@ -286,6 +303,7 @@ a {
 
 
   .nav-tabs {
+    background: none;
     margin-bottom: 2em;
 
     li {
@@ -322,6 +340,7 @@ a {
     }
   }
   .sidenav {
+    background: none;
 
     li {
       border: none;
@@ -442,6 +461,11 @@ a {
   .thumbnail {
     border: none !important;
 
+    img {
+      background: #fff;
+      border-bottom: 1px solid #bbb;
+    }
+
     h2 {
       font-size: 16pt;
       letter-spacing: 0.5px;
@@ -480,20 +504,16 @@ a {
 
 
   .thumbnail.featured {
+
     img {
-      //filter: grayscale(0);
-      //-webkit-filter: grayscale(0);
+      border-bottom: none;
     }
 
     .caption {
       padding: 0px 12pt 5pt 12pt;
       color: #ccc;
       background: linear-gradient(to bottom, #202020, #333);
-      //background: #333;
-
-      //border-left: 1px solid #333;
-      //border-right: 1px solid #333;
-      //border-bottom: 1px solid #333;
+      border-bottom: 1px solid #000;
 
        h4 {
         color: #fff;
@@ -544,12 +564,15 @@ a {
   }
 
   .panel {
-    background: #000;
-    opacity: 0.8;
+    background: none;
+    border: none;
   }
 
   .panel-body {
+    background: #000;
+    opacity: 0.8;
     color: #fff;
+    padding: 15px 25px;
   }
 
 }
@@ -589,11 +612,12 @@ img.mfp-img {
 
 /* footer */
 #footer {
+  background: #fff;
   color: #999;
   border-top: 1px solid #ddd;
   margin-top: 1.5em;
-  padding-top: 1.5em;
-  padding-bottom: 1em;
+  padding-top: 1.0em;
+  padding-bottom: 0.5em;
 
 
   a:hover {

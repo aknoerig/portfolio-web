@@ -27,17 +27,7 @@ exports = module.exports = function(req, res) {
 			
 			locals.data.categories = results;
 			
-			// Load the counts for each category
-			async.each(locals.data.categories, function(category, next) {
-				
-				keystone.list('Activity').model.count().where('category').in([category.id]).exec(function(err, count) {
-					category.activityCount = count;
-					next(err);
-				});
-				
-			}, function(err) {
-				next(err);
-			});
+			next(err);
 			
 		});
 		
@@ -62,7 +52,7 @@ exports = module.exports = function(req, res) {
 		
 		var q = keystone.list('Activity').paginate({
 				page: req.query.page || 1,
-				perPage: 10,
+				perPage: 42,
 				maxPages: 10
 			})
 			.where('state', 'published')

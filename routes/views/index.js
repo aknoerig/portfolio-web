@@ -15,12 +15,12 @@ exports = module.exports = function(req, res) {
 	}
 
 
-	// load 3 featured projects	
+	// load 3 projects	
 	view.on('init', function(next) {
 		
 		keystone.list('Project').model.find()
 			.where('state', 'published')
-			.where('featured', true)
+			//.where('featured', true)
 			.sort('-toDate')
 			.populate('category')
 			.exec(function(err, results) {
