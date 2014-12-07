@@ -59,10 +59,12 @@ block content
 									a(href='/tags/' + tech.key)= tech.name
 
 		if data.tag
-			h2 Works in 
-				span= data.property
-				|  / 
-				span= data.tag.name
+			.row
+				.col-xs-12
+					h2 Works in 
+						em= data.property
+						em  / 
+						em= data.tag.name
 
 
 	.container: .row
