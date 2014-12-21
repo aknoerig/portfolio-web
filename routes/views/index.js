@@ -12,7 +12,7 @@ exports = module.exports = function(req, res) {
 
 	locals.data = {
 		projects : [],
-	}
+	};
 
 
 	// load 3 projects	
