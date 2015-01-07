@@ -84,6 +84,10 @@ block content
 				.lead!= data.project.content.brief
 				.text!= data.project.content.extended
 
+			//if data.project.embedCode1.exists
+				.row
+					.embed!= data.project.embedCode1.html
+
 			if data.project.gallery.length
 				.row.gallery
 					hr
@@ -92,6 +96,15 @@ block content
 					each image in data.project.gallery
 						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.limit(1200,1200, {gravity:'center'}))
 							img(src=image.fill(200,120, {gravity:'center'})).img-responsive
+					if data.project.embedCode1.exists
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=data.project.embedUrl1, class='mfp-iframe')
+							img(src=data.project.embedCode1.thumbnailUrl, width=200, height=120).img-responsive
+					if data.project.embedCode2.exists
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=data.project.embedUrl2, class='mfp-iframe')
+							img(src=data.project.embedCode2.thumbnailUrl, width=200, height=120).img-responsive
+					if data.project.embedCode3.exists
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=data.project.embedUrl3, class='mfp-iframe')
+							img(src=data.project.embedCode3.thumbnailUrl, width=200, height=120).img-responsive
 
 			if data.project.activities && data.project.activities.length
 				.related

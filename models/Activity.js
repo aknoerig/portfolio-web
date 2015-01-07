@@ -27,6 +27,12 @@ Activity.add({
 	interactions: { type: Types.Relationship, ref: 'Interaction', many: true },
 	keyImage: { type: Types.CloudinaryImage },
 	gallery: { type: Types.CloudinaryImages },
+	embedUrl1: { type: String },
+	embedCode1: { type: Types.Embedly, from: 'embedUrl1' },
+	embedUrl2: { type: String },
+	embedCode2: { type: Types.Embedly, from: 'embedUrl2' },
+	embedUrl3: { type: String },
+	embedCode3: { type: Types.Embedly, from: 'embedUrl3' },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }

@@ -77,6 +77,15 @@ block content
 					each image in data.activity.gallery
 						.col-xs-6.col-sm-4.col-md-3.item: a(href=image.limit(1200,1200, {gravity:'center'}))
 							img(src=image.fill(200,120, {gravity:'center'})).img-responsive
+					if data.activity.embedCode1.exists
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=data.activity.embedUrl1, class='mfp-iframe')
+							img(src=data.activity.embedCode1.thumbnailUrl, width=200, height=120).img-responsive
+					if data.activity.embedCode2.exists
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=data.activity.embedUrl2, class='mfp-iframe')
+							img(src=data.activity.embedCode2.thumbnailUrl, width=200, height=120).img-responsive
+					if data.activity.embedCode3.exists
+						.col-xs-6.col-sm-4.col-md-3.item: a(href=data.activity.embedUrl3, class='mfp-iframe')
+							img(src=data.activity.embedCode3.thumbnailUrl, width=200, height=120).img-responsive
 
 			if data.activity.works && data.activity.works.length
 				.related

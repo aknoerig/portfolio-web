@@ -20,6 +20,7 @@ Project.add({
 	toDate: { type: Types.Date },
 	role: { type: String },
 	innovation: { type: String },
+	link: { type: Types.Url },
 	partners: { type: Types.Relationship, ref: 'Organization', many: true },
 	clients: { type: Types.Relationship, ref: 'Organization', many: true },
 	industries: { type: Types.Relationship, ref: 'Industry', many: true },
@@ -29,7 +30,12 @@ Project.add({
 	activities: { type: Types.Relationship, ref: 'Activity', many: true },
 	keyImage: { type: Types.CloudinaryImage },
 	gallery: { type: Types.CloudinaryImages },
-	link: { type: Types.Url },
+	embedUrl1: { type: String },
+	embedCode1: { type: Types.Embedly, from: 'embedUrl1' },
+	embedUrl2: { type: String },
+	embedCode2: { type: Types.Embedly, from: 'embedUrl2' },
+	embedUrl3: { type: String },
+	embedCode3: { type: Types.Embedly, from: 'embedUrl3' },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
