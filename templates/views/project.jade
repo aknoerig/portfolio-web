@@ -12,8 +12,9 @@ block intro
 
 block content
 	.container: .row
-		.col-sm-3.col-md-3
-			aside(data-spy="affix" data-offset-top="110" data-offset-bottom="150")
+		.col-sm-4.col-md-4
+			//aside(data-spy="affix" data-offset-top="110" data-offset-bottom="150")
+			aside
 				p.sub= data.project.innovation
 				p.meta
 					//- if data.project.category == "Consulting"
@@ -77,7 +78,7 @@ block content
 								|  | 
 							else
 								br
-		.col-sm-9.col-md-7
+		.col-sm-8.col-md-7
 			article
 				if data.project.keyImage.exists
 					.img-key: img(src=data.project._.keyImage.fit(750,450)).img-responsive
