@@ -15,6 +15,7 @@ exports = module.exports = function(req, res) {
 	};
 	locals.data = {
 		projects: [],
+		activities: [],
 		industries: [],
 		technologies: [],
 		interactions: [],
@@ -130,6 +131,29 @@ exports = module.exports = function(req, res) {
 		
 		q.exec(function(err, results) {
 			locals.data.projects = results;
+			next(err);
+		});
+		
+	});
+
+	// Load the Activities
+	view.on('init', function(next) {
+		
+		var q = keystone.list('Activity').paginate({
+				page: req.query.page || 1,
+				perPage: 12,
+				maxPages: 10
+			})
+			.where('state', 'published')
+			.sort('-date')
+			.populate('industries technologies interactions');
+		
+		if (locals.data.tag) {
+			q.where(locals.data.property).in([locals.data.tag]);
+		}
+		
+		q.exec(function(err, results) {
+			locals.data.activities = results;
 			next(err);
 		});
 		

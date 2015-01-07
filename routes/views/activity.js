@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 		var q = keystone.list('Activity').model.findOne({
 			state: 'published',
 			slug: locals.filters.activity
-		}).populate('author categories');
+		}).populate('author categories works industries technologies interactions');
 		
 		q.exec(function(err, result) {
 			locals.data.activity = result;

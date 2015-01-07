@@ -29,14 +29,38 @@ block content
 						| at 
 						a(href=data.activity.placeLink, target="_blank")= data.activity.place
 						br
-					if data.activity.location
-						| in #{data.activity.location}
+					if data.activity.geoLocation
+						| in #{data.activity.geoLocation.suburb}
 						br
 				if data.activity.link
 					p.link
 						| &rarr; 
 						a(href=data.activity.link, target="_blank")= data.activity._.link.format()
 				p.tags
+					if data.activity.industries && data.activity.industries.length
+						| Industries: 
+						each industry, i in data.activity.industries
+							a(href="/tags/"+industry.key)= industry.name
+							if i < data.activity.industries.length - 1
+								|  | 
+							else
+								br
+					if data.activity.technologies && data.activity.technologies.length
+						| Technologies:  
+						each tech, i in data.activity.technologies
+							a(href="/tags/"+tech.key)= tech.name
+							if i < data.activity.technologies.length - 1
+								|  | 
+							else
+								br
+					if data.activity.interactions && data.activity.interactions.length
+						| Interactions:  
+						each interaction, i in data.activity.interactions
+							a(href="/tags/"+interaction.key)= interaction.name
+							if i < data.activity.interactions.length - 1
+								|  | 
+							else
+								br
 					
 		.col-sm-8.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
