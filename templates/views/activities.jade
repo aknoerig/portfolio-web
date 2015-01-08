@@ -120,30 +120,73 @@ block content
 	#activities-map
 
 block js
-	script(src='js/lib/underscore-min.js')
+	script(src='/js/lib/underscore-min.js')
 	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey + '&sensor=false')
 	script.
 		var activityMarkers = !{JSON.stringify(data.markers)};
+		var MY_MAPTYPE_ID = 'custom_style';
 
 		function initialize() {
 
 			var mapOptions = {
 				center: new google.maps.LatLng(52.51, 13.39),
-				zoom: 3
+				zoom: 3,
+				disableDefaultUI: true,
+			    mapTypeControlOptions: {
+			      mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+			    },
+			    mapTypeId: MY_MAPTYPE_ID
 			};
+
+			var featureOptions = [
+				{
+				  stylers: [
+				    { hue: '#e6e4de' },
+				    { visibility: 'simplified' },
+				    { gamma: 1.0 },
+				    { weight: 1.0 }
+				  ]
+				},
+				{
+				  elementType: 'labels',
+				  stylers: [
+				    { visibility: 'off' }
+				  ]
+				},
+				{
+				  featureType: 'water',
+				  stylers: [
+				    { color: '#e6e4de' }
+				  ]
+				}
+			];
+
 
 			var map = new google.maps.Map(document.getElementById("activities-map"),
 				mapOptions);
 
+			var styledMapOptions = {
+				name: 'Custom Style'
+			};
+
+			var customMapType = new google.maps.StyledMapType(featureOptions, styledMapOptions);
+
+			map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+			
 			_.each(activityMarkers, function(activity) {
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(activity.geo[1], activity.geo[0]),
 					map: map,
-					title: activity.title
+					title: activity.title,
+					icon: '/images/marker.svg'
 				});
 
 				var infowindow = new google.maps.InfoWindow({
-					content: activity.title
+					content: '<div id="marker">'+
+				      '<h5><a href="/activities/activity/' + activity.slug + '">' + activity.title + '</a></h5>'+
+				      '<p>'+ activity.description +
+				      '</p>'+
+				      '</div>'
 				});
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(map, marker);

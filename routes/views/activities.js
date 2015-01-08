@@ -84,7 +84,8 @@ exports = module.exports = function(req, res) {
         		function(activity) {
             		return { 
             			geo: activity.geoLocation.geo, 
-            			title: activity.title, 
+            			title: activity.title,
+            			description: activity.subtitle + ' at ' + activity.place + '<br/>' + activity.geoLocation.name + ', ' + activity.geoLocation.suburb + ', ' + activity.geoLocation.country,
             			slug: activity.slug 
             		};
         	});
