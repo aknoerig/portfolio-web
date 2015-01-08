@@ -88,35 +88,67 @@ block content
 
 	.container: .row: .col-xs-12
 		
-			if filters.category && !data.category
-				h3.text-muted Invalid Category.
+		if filters.category && !data.category
+			h3.text-muted Invalid Category.
+		else
+			if data.activities.results.length
+				.activities
+					each activity in data.activities.results
+						+activity(activity)
+				
+				if data.activities.totalPages > 1
+					.clearfix
+					.pagination-frame
+						ul.pagination
+							if data.activities.previous
+								li: a(href='?page=' + data.activities.previous): &larr;
+							else
+								li.disabled: a(href='?page=' + 1): &larr;
+							each p, i in data.activities.pages
+								li(class=data.activities.currentPage == p ? 'active' : null)
+									a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
+							if data.activities.next
+								li: a(href='?page=' + data.activities.next): &rarr;
+							else
+								li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
 			else
-				if data.activities.results.length
-					//.activities.js-packery(data-packery-options='{ "itemSelector": ".item", "gutter": 15 }')
-					.activities
-						each activity in data.activities.results
-							+activity(activity)
-					
-					if data.activities.totalPages > 1
-						.clearfix
-						.pagination-frame
-							ul.pagination
-								if data.activities.previous
-									li: a(href='?page=' + data.activities.previous): &larr;
-								else
-									li.disabled: a(href='?page=' + 1): &larr;
-								each p, i in data.activities.pages
-									li(class=data.activities.currentPage == p ? 'active' : null)
-										a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
-								if data.activities.next
-									li: a(href='?page=' + data.activities.next): &rarr;
-								else
-									li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
+				if data.category
+					h3.text-muted There are no activities in the category #{data.category.name}.
 				else
-					if data.category
-						h3.text-muted There are no activities in the category #{data.category.name}.
-					else
-						h3.text-muted There are no activities yet.
+					h3.text-muted There are no activities yet.
+
+	#activities-map
 
 block js
-	//script(src="/js/lib/packery.pkgd.min.js")
+	script(src='js/lib/underscore-min.js')
+	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey + '&sensor=false')
+	script.
+		var activityMarkers = !{JSON.stringify(data.markers)};
+
+		function initialize() {
+
+			var mapOptions = {
+				center: new google.maps.LatLng(52.51, 13.39),
+				zoom: 3
+			};
+
+			var map = new google.maps.Map(document.getElementById("activities-map"),
+				mapOptions);
+
+			_.each(activityMarkers, function(activity) {
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(activity.geo[1], activity.geo[0]),
+					map: map,
+					title: activity.title
+				});
+
+				var infowindow = new google.maps.InfoWindow({
+					content: activity.title
+				});
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map, marker);
+				});
+			});
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);

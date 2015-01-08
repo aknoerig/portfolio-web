@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
-	async = require('async');
+	async = require('async'),
+	_ = require('underscore');
 
 exports = module.exports = function(req, res) {
 	
@@ -13,8 +14,11 @@ exports = module.exports = function(req, res) {
 	};
 	locals.data = {
 		activities: [],
-		categories: []
+		categories: [],
+		markers: []
 	};
+	locals.mapsApiKey = keystone.get('google api key');
+
 	
 	// Load all categories
 	view.on('init', function(next) {
@@ -69,6 +73,27 @@ exports = module.exports = function(req, res) {
 		});
 		
 	});
+
+
+    // Create the array of activity map markers
+    view.on('render', function(next) {
+
+    	if (locals.data.activities) {
+
+        	locals.data.markers = _.map( locals.data.activities.results, 
+        		function(activity) {
+            		return { 
+            			geo: activity.geoLocation.geo, 
+            			title: activity.title, 
+            			slug: activity.slug 
+            		};
+        	});
+
+        }
+
+        next();
+
+    });
 	
 	// Render the view
 	view.render('activities');
