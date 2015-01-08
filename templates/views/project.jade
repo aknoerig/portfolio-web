@@ -89,7 +89,7 @@ block content
 				.row
 					.embed!= data.project.embedCode1.html
 
-			if data.project.gallery.length
+			if (data.project.gallery && data.project.gallery.length) || (data.project.embedCode1.exists)
 				.row.gallery
 					hr
 					//-if data.project.keyImage.exists

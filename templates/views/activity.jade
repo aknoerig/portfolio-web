@@ -70,7 +70,7 @@ block content
 				.lead!= data.activity.content.brief
 				!= data.activity.content.extended
 
-			if data.activity.gallery && data.activity.gallery.length
+			if (data.activity.gallery && data.activity.gallery.length) || (data.activity.embedCode1.exists)
 				.row.gallery
 					hr
 					//-if data.activity.keyImage.exists
