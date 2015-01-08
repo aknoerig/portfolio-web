@@ -14,6 +14,7 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		activities: []
 	};
+	locals.mapsApiKey = keystone.get('google api key');
 	
 	// Load the current activity
 	view.on('init', function(next) {
