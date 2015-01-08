@@ -460,6 +460,7 @@ em {
 
   .thumbnail {
     border: none !important;
+    padding-bottom: 1pt;
 
     img {
       background: #fff;
@@ -505,15 +506,17 @@ em {
 
   .thumbnail.featured {
 
+    background: linear-gradient(to bottom, #202020, #333);
+
     img {
       border-bottom: none;
     }
 
     .caption {
-      padding: 0px 12pt 5pt 12pt;
+      padding-left: 12pt;
+      padding-right: 12pt;
       color: #ccc;
-      background: linear-gradient(to bottom, #202020, #333);
-      border-bottom: 1px solid #000;
+      //border-bottom: 1px solid #000;
 
        h4 {
         color: #fff;

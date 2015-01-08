@@ -92,16 +92,6 @@ block content
 				h3.text-muted Invalid Category.
 			else
 				if data.activities.results.length
-					//-if data.activities.totalPages > 1
-						h4.text-weight-normal Showing 
-							strong #{data.activities.first}
-							|  to 
-							strong #{data.activities.last}
-							|  of 
-							strong #{data.activities.total}
-							|  activities.
-					//-else
-						h4.text-weight-normal Showing #{utils.plural(data.activities.results.length, '* activity')}.
 					//.activities.js-packery(data-packery-options='{ "itemSelector": ".item", "gutter": 15 }')
 					.activities
 						each activity in data.activities.results
