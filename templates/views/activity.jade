@@ -89,14 +89,15 @@ block content
 							img(src=data.activity.embedCode3.thumbnailUrl, width=200, height=120).img-responsive
 
 			if data.activity.works && data.activity.works.length
-				.related
+				.row.related
 					hr
-					h4 Related works
-					each project, i in data.activity.works
-						a(href="/works/project/" + project.slug)= project.title
-						if i < data.activity.works.length - 1
-							| , 
-						else
+					.col-xs-7
+						h4 Related works
+						each project, i in data.activity.works
+							a(href="/works/project/" + project.slug)= project.title
+							if i < data.activity.works.length - 1
+								| , 
+							else
 
 	#activity-map
 

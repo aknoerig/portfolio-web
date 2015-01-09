@@ -108,14 +108,15 @@ block content
 							img(src=data.project.embedCode3.thumbnailUrl, width=200, height=120).img-responsive
 
 			if data.project.activities && data.project.activities.length
-				.related
+				.row.related
 					hr
-					h4 Related activities
-					each activity, i in data.project.activities
-						a(href="/activities/activity/" + activity.slug)= activity.title
-						if i < data.project.activities.length - 1
-							| , 
-						else
+					.col-xs-7
+						h4 Related activities
+						each activity, i in data.project.activities
+							a(href="/activities/activity/" + activity.slug)= activity.title
+							if i < data.project.activities.length - 1
+								| , 
+							else
 
 block css
 	link(rel="stylesheet", href="/js/lib/magnific-popup.css")
