@@ -52,7 +52,7 @@ exports = module.exports = function(req, res) {
 		
 		var q = keystone.list('Project').paginate({
 				page: req.query.page || 1,
-				perPage: 30,
+				perPage: 100,
 				maxPages: 10
 			})
 			.where('state', 'published')
