@@ -16,6 +16,13 @@ mixin activity(activity)
 				h2= activity.title
 				p= 	activity.subtitle
 
+block title
+	if data.tag
+		title Andr&eacute; Kn&ouml;rig &mdash; Category #{data.tag.name}
+	else
+		title Andr&eacute; Kn&ouml;rig &mdash; Categories
+
+
 block intro
 	//if data.tag
 		.container.intro
@@ -73,88 +80,92 @@ block content
 				.col-xs-12
 					h3.text-muted Invalid Tag.
 			else
-				if data.projects.results.length
+				if !data.tag
 					.col-xs-12
-						h2 Works in 
-							em= data.property
-							em  / 
-							em= data.tag.name
-						//-if data.projects.totalPages > 1
-							h4.text-weight-normal Showing 
-								strong #{data.projects.first}
-								|  to 
-								strong #{data.projects.last}
-								|  of 
-								strong #{data.projects.total}
-								|  projects.
-						//-else
-							h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
-						.works
-							each project in data.projects.results
-								+project(project)
-						
-						if data.projects.totalPages > 1
-							.clearfix
-							.pagination-frame
-								ul.pagination
-									if data.projects.previous
-										li: a(href='?page=' + data.projects.previous): &larr;
-									else
-										li.disabled: a(href='?page=' + 1): &larr;
-									each p, i in data.projects.pages
-										li(class=data.projects.currentPage == p ? 'active' : null)
-											a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
-									if data.projects.next
-										li: a(href='?page=' + data.projects.next): &rarr;
-									else
-										li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
+						h5 Select a category to see related works and activities.
 				else
-					.col-xs-12
-						if data.tag
-							h3.text-muted There are no projects in the category #{data.tag.name} yet. Time to get into this!
-						else
-							h3.text-muted There are no projects yet.
+					if data.projects.results.length
+						.col-xs-12
+							h2 Works in 
+								em= data.property
+								em  / 
+								em= data.tag.name
+							//-if data.projects.totalPages > 1
+								h4.text-weight-normal Showing 
+									strong #{data.projects.first}
+									|  to 
+									strong #{data.projects.last}
+									|  of 
+									strong #{data.projects.total}
+									|  projects.
+							//-else
+								h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
+							.works
+								each project in data.projects.results
+									+project(project)
+							
+							if data.projects.totalPages > 1
+								.clearfix
+								.pagination-frame
+									ul.pagination
+										if data.projects.previous
+											li: a(href='?page=' + data.projects.previous): &larr;
+										else
+											li.disabled: a(href='?page=' + 1): &larr;
+										each p, i in data.projects.pages
+											li(class=data.projects.currentPage == p ? 'active' : null)
+												a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
+										if data.projects.next
+											li: a(href='?page=' + data.projects.next): &rarr;
+										else
+											li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
+					else
+						.col-xs-12
+							if data.tag
+								h3.text-muted There are no projects in the category #{data.tag.name} yet. Time to get into this!
+							else
+								h3.text-muted There are no projects yet.
 
 
 
-				if data.activities.results.length
-					.col-xs-12
-						h2 Activities in 
-							em= data.property
-							em  / 
-							em= data.tag.name
-						//-if data.projects.totalPages > 1
-							h4.text-weight-normal Showing 
-								strong #{data.projects.first}
-								|  to 
-								strong #{data.projects.last}
-								|  of 
-								strong #{data.projects.total}
-								|  projects.
-						//-else
-							h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
-						.activities
-							each activity in data.activities.results
-								+activity(activity)
-						
-						if data.activities.totalPages > 1
-							.clearfix
-							.pagination-frame
-								ul.pagination
-									if data.activities.previous
-										li: a(href='?page=' + data.activities.previous): &larr;
-									else
-										li.disabled: a(href='?page=' + 1): &larr;
-									each p, i in data.activities.pages
-										li(class=data.activities.currentPage == p ? 'active' : null)
-											a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
-									if data.activities.next
-										li: a(href='?page=' + data.activities.next): &rarr;
-									else
-										li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
-				//else
-					.col-xs-12
-						if data.tag
-							h3.text-muted There are no activities in the category #{data.tag.name} yet. Time to get into this!
-						else
-							h3.text-muted There are no activities yet.
+					if data.activities.results.length
+						.col-xs-12
+							h2 Activities in 
+								em= data.property
+								em  / 
+								em= data.tag.name
+							//-if data.projects.totalPages > 1
+								h4.text-weight-normal Showing 
+									strong #{data.projects.first}
+									|  to 
+									strong #{data.projects.last}
+									|  of 
+									strong #{data.projects.total}
+									|  projects.
+							//-else
+								h4.text-weight-normal Showing #{utils.plural(data.projects.results.length, '* project')}.
+							.activities
+								each activity in data.activities.results
+									+activity(activity)
+							
+							if data.activities.totalPages > 1
+								.clearfix
+								.pagination-frame
+									ul.pagination
+										if data.activities.previous
+											li: a(href='?page=' + data.activities.previous): &larr;
+										else
+											li.disabled: a(href='?page=' + 1): &larr;
+										each p, i in data.activities.pages
+											li(class=data.activities.currentPage == p ? 'active' : null)
+												a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
+										if data.activities.next
+											li: a(href='?page=' + data.activities.next): &rarr;
+										else
+											li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
+					//else
+						.col-xs-12
+							if data.tag
+								h3.text-muted There are no activities in the category #{data.tag.name} yet. Time to get into this!
+							else
+								h3.text-muted There are no activities yet.

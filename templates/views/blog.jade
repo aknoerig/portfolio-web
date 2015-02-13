@@ -22,6 +22,9 @@ mixin post(post)
 		if post.content.extended
 			p.read-more: a(href='/blog/post/' + post.slug) Read more...
 
+block title
+	title Andr&eacute; Kn&ouml;rig &mdash; Blog
+
 block intro
 	.container
 		h1= data.category ? data.category.name : 'Blog'
