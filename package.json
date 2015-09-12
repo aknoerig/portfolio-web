@@ -3,27 +3,27 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "async": "~0.9.0",
-    "dotenv": "0.4.0",
-    "keystone": "~0.2.39",
-    "moment": "~2.8.4",
+    "async": "~1.4.2",
+    "dotenv": "1.2.0",
+    "keystone": "~0.3.14",
+    "moment": "~2.10.6",
     "newrelic": "^1.14.3",
-    "underscore": "~1.7.0"
+    "underscore": "~1.8.3"
   },
   "devDependencies": {
-    "autoprefixer-core": "^4.0.2",
+    "autoprefixer-core": "^6.0.1",
     "grunt": "~0.4.5",
-    "grunt-concurrent": "~1.0.0",
-    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-concurrent": "~2.0.3",
+    "grunt-contrib-jshint": "~0.11.3",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-express-server": "~0.4.19",
-    "grunt-node-inspector": "~0.1.5",
-    "grunt-nodemon": "~0.3.0",
-    "grunt-postcss": "^0.2.0",
-    "jshint-stylish": "~1.0.0",
-    "load-grunt-tasks": "~1.0.0",
+    "grunt-express-server": "~0.5.1",
+    "grunt-node-inspector": "~0.2.0",
+    "grunt-nodemon": "~0.4.0",
+    "grunt-postcss": "^0.6.0",
+    "jshint-stylish": "~2.0.1",
+    "load-grunt-tasks": "~3.2.0",
     "open": "0.0.5",
-    "time-grunt": "~1.0.0"
+    "time-grunt": "~1.2.1"
   },
   "engines": {
     "node": ">=0.10.22",
