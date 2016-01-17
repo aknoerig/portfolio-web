@@ -29,6 +29,8 @@ Project.add({
 	publications: { type: Types.Relationship, ref: 'Publication', many: true },
 	activities: { type: Types.Relationship, ref: 'Activity', many: true },
 	keyImage: { type: Types.CloudinaryImage },
+	keyEmbedUrl: { type: String },
+	keyEmbedCode: { type: Types.Embedly, from: 'keyEmbedUrl' },
 	gallery: { type: Types.CloudinaryImages },
 	embedUrl1: { type: String },
 	embedCode1: { type: Types.Embedly, from: 'embedUrl1' },

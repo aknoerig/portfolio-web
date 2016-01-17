@@ -26,6 +26,8 @@ Activity.add({
 	technologies: { type: Types.Relationship, ref: 'Technology', many: true },
 	interactions: { type: Types.Relationship, ref: 'Interaction', many: true },
 	keyImage: { type: Types.CloudinaryImage },
+	keyEmbedUrl: { type: String },
+	keyEmbedCode: { type: Types.Embedly, from: 'keyEmbedUrl' },
 	gallery: { type: Types.CloudinaryImages },
 	embedUrl1: { type: String },
 	embedCode1: { type: Types.Embedly, from: 'embedUrl1' },

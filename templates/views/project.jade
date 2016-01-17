@@ -83,8 +83,11 @@ block content
 								br
 		.col-sm-8.col-md-7
 			article
-				if data.project.keyImage.exists
-					.img-key: img(src=data.project._.keyImage.fit(750,450)).img-responsive
+				if data.project.keyEmbedCode.exists
+						.embed!= data.project.keyEmbedCode.html
+				else
+					if data.project.keyImage.exists
+						.img-key: img(src=data.project._.keyImage.fit(750,450)).img-responsive
 				.lead!= data.project.content.brief
 				.text!= data.project.content.extended
 
