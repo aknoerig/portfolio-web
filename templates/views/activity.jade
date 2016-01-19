@@ -69,7 +69,8 @@ block content
 		.col-sm-7.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
 				if data.activity.keyEmbedCode.exists
-						.img-responsive!= data.activity.keyEmbedCode.html
+					div.responsive-object
+						!= data.activity.keyEmbedCode.html
 				else
 					if data.activity.keyImage.exists
 						.img-key: img(src=data.activity._.keyImage.limit(750,450, {gravity:'center'}))
@@ -112,6 +113,27 @@ block css
 	link(rel="stylesheet", href="/js/lib/magnific-popup.css")
 
 block js
+	if data.activity.keyEmbedCode.exists
+		script(src='http://cdn.embed.ly/jquery.embedly-3.1.1.min.js')
+
+		script.
+			/* Scale embedly videos responsively */
+
+			$.embedly.defaults.key = '#{embedly_api_key}';
+
+			$('article').embedly({
+			  display: function(obj){
+			    if (obj.type === 'video' || obj.type === 'rich'){
+			      var ratio = ((obj.height/obj.width)*100).toPrecision(4) + '%'
+			      var div = $('<div class="responsive-object">').css({
+			        paddingBottom: ratio
+			      });
+			      div.html(obj.html);
+			      $(this).replaceWith(div);
+			    }
+			  }
+			});
+
 	if data.activity.gallery.length
 		script(src="/js/lib/jquery.magnific-popup.min.js")
 

@@ -52,7 +52,8 @@ keystone.set('locals', {
 	utils: keystone.utils,
 	editable: keystone.content.editable,
 	ga_property: keystone.get('ga property'),
-	ga_domain: keystone.get('ga domain')
+	ga_domain: keystone.get('ga domain'),
+	embedly_api_key: keystone.get('embedly api key')
 });
 
 // Load your project's Routes
