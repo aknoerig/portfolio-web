@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "async": "~1.5.2",
+    "async": "~2.2.0",
     "dotenv": "~4.0.0",
-    "keystone": "~0.3.22",
+    "keystone": "~4.0.0-beta.5",
     "moment": "~2.18.1",
+    "pug": "~2.0.0-beta.12",
     "underscore": "~1.8.3"
   },
   "devDependencies": {
@@ -24,8 +25,8 @@
     "time-grunt": "~1.3.0"
   },
   "engines": {
-    "node": "~6.5.0",
-    "npm": "~3.8.0"
+    "node": "~6.10.2",
+    "npm": "~3.10.10"
   },
   "scripts": {
     "start": "node keystone.js"

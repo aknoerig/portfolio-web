@@ -100,8 +100,8 @@ module.exports = function(grunt) {
 				files: [
 					'public/styles/**/*.css',
 					'public/styles/**/*.less',
-					'templates/**/*.jade',
-					'node_modules/keystone/templates/**/*.jade'
+					'templates/**/*.pug',
+					'node_modules/keystone/templates/**/*.pug'
 				],
 				options: {
 					livereload: true

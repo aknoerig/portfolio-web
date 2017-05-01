@@ -26,9 +26,9 @@ block title
 block intro
 	//if data.tag
 		.container.intro
-			h2 Works in 
+			h2 Works in
 				span= data.property
-				|  / 
+				|  /
 				span= data.tag.name
 
 block content
@@ -75,7 +75,7 @@ block content
 
 
 	.container: .row
-		
+
 			if filters.tag && !data.tag
 				.col-xs-12
 					h3.text-muted Invalid Tag.
@@ -86,16 +86,16 @@ block content
 				else
 					if data.projects.results.length
 						.col-xs-12
-							h2 Works in 
+							h2 Works in
 								em= data.property
-								em  / 
+								em  /
 								em= data.tag.name
 							//-if data.projects.totalPages > 1
-								h4.text-weight-normal Showing 
+								h4.text-weight-normal Showing
 									strong #{data.projects.first}
-									|  to 
+									|  to
 									strong #{data.projects.last}
-									|  of 
+									|  of
 									strong #{data.projects.total}
 									|  projects.
 							//-else
@@ -103,22 +103,22 @@ block content
 							.works
 								each project in data.projects.results
 									+project(project)
-							
+
 							if data.projects.totalPages > 1
 								.clearfix
 								.pagination-frame
 									ul.pagination
 										if data.projects.previous
-											li: a(href='?page=' + data.projects.previous): &larr;
+											li: a(href='?page=' + data.projects.previous) &larr;
 										else
-											li.disabled: a(href='?page=' + 1): &larr;
+											li.disabled: a(href='?page=' + 1) &larr;
 										each p, i in data.projects.pages
 											li(class=data.projects.currentPage == p ? 'active' : null)
 												a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
 										if data.projects.next
-											li: a(href='?page=' + data.projects.next): &rarr;
+											li: a(href='?page=' + data.projects.next) &rarr;
 										else
-											li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
+											li.disabled: a(href='?page=' + data.projects.totalPages) &rarr;
 					else
 						.col-xs-12
 							if data.tag
@@ -130,16 +130,16 @@ block content
 
 					if data.activities.results.length
 						.col-xs-12
-							h2 Activities in 
+							h2 Activities in
 								em= data.property
-								em  / 
+								em  /
 								em= data.tag.name
 							//-if data.projects.totalPages > 1
-								h4.text-weight-normal Showing 
+								h4.text-weight-normal Showing
 									strong #{data.projects.first}
-									|  to 
+									|  to
 									strong #{data.projects.last}
-									|  of 
+									|  of
 									strong #{data.projects.total}
 									|  projects.
 							//-else
@@ -147,22 +147,22 @@ block content
 							.activities
 								each activity in data.activities.results
 									+activity(activity)
-							
+
 							if data.activities.totalPages > 1
 								.clearfix
 								.pagination-frame
 									ul.pagination
 										if data.activities.previous
-											li: a(href='?page=' + data.activities.previous): &larr;
+											li: a(href='?page=' + data.activities.previous) &larr;
 										else
-											li.disabled: a(href='?page=' + 1): &larr;
+											li.disabled: a(href='?page=' + 1) &larr;
 										each p, i in data.activities.pages
 											li(class=data.activities.currentPage == p ? 'active' : null)
 												a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
 										if data.activities.next
-											li: a(href='?page=' + data.activities.next): &rarr;
+											li: a(href='?page=' + data.activities.next) &rarr;
 										else
-											li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
+											li.disabled: a(href='?page=' + data.activities.totalPages) &rarr;
 					//else
 						.col-xs-12
 							if data.tag

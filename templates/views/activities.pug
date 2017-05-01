@@ -9,7 +9,7 @@ mixin activity(activity)
 					p.description
 						if activity.subtitle
 							= activity.subtitle
-							|  
+							|
 						if activity.place
 							| @
 							= activity.place
@@ -31,7 +31,7 @@ mixin activity-packery(activity)
 					p.description
 						if activity.subtitle
 							= activity.subtitle
-							|  
+							|
 						if activity.place
 							| @
 							= activity.place
@@ -51,7 +51,7 @@ mixin activity-packery(activity)
 					p.description
 						if activity.subtitle
 							= activity.subtitle
-							|  
+							|
 						if activity.place
 							| @
 							= activity.place
@@ -104,16 +104,16 @@ block content
 					.pagination-frame
 						ul.pagination
 							if data.activities.previous
-								li: a(href='?page=' + data.activities.previous): &larr;
+								li: a(href='?page=' + data.activities.previous) &larr;
 							else
-								li.disabled: a(href='?page=' + 1): &larr;
+								li.disabled: a(href='?page=' + 1) &larr;
 							each p, i in data.activities.pages
 								li(class=data.activities.currentPage == p ? 'active' : null)
 									a(href='?page=' + (p == '...' ? (i ? data.activities.totalPages : 1) : p ))= p
 							if data.activities.next
-								li: a(href='?page=' + data.activities.next): &rarr;
+								li: a(href='?page=' + data.activities.next) &rarr;
 							else
-								li.disabled: a(href='?page=' + data.activities.totalPages): &rarr;
+								li.disabled: a(href='?page=' + data.activities.totalPages) &rarr;
 			else
 				if data.category
 					h3.text-muted There are no activities in the category #{data.category.name}.

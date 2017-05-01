@@ -19,7 +19,7 @@ Publication.add({
 	citation: { type: String },
 	year: { type: Types.Date, index: true },
 	featured: { type: Boolean, default: false, index: true },
-	file: { type: Types.S3File },
+	//file: { type: Types.S3File },
 	link: { type: Types.Url },
 	keyImage: { type: Types.CloudinaryImage },
 	content: {
