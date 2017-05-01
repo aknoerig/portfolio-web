@@ -1,4 +1,3 @@
-require('newrelic');
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 require('dotenv').load();
@@ -14,19 +13,19 @@ keystone.init({
 
 	'name': 'André Knörig',
 	'brand': 'André Knörig',
-	
+
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'jade',
-	
+
 	'emails': 'templates/emails',
 
 	'wysiwyg images': true,
 	'wysiwyg cloudinary images': true,
 	'wysiwyg additional buttons': 'formatselect removeformat blockquote',
-	
+
 	'auto update': true,
 	'session': true,
 	'auth': true,

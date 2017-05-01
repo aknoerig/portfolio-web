@@ -7,7 +7,6 @@
     "dotenv": "~4.0.0",
     "keystone": "~0.3.22",
     "moment": "~2.18.1",
-    "newrelic": "~1.38.2",
     "underscore": "~1.8.3"
   },
   "devDependencies": {
