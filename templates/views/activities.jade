@@ -9,12 +9,12 @@ mixin activity(activity)
 					p.description
 						if activity.subtitle
 							= activity.subtitle
-							|  
+							|
 						if activity.place
-							| @ 
+							| @
 							= activity.place
 						//if activity.location
-							| , 
+							| ,
 							= activity.location
 					p.date
 						if activity.date
@@ -31,12 +31,12 @@ mixin activity-packery(activity)
 					p.description
 						if activity.subtitle
 							= activity.subtitle
-							|  
+							|
 						if activity.place
-							| @ 
+							| @
 							= activity.place
 						//if activity.location
-							| , 
+							| ,
 							= activity.location
 					p.date
 						if activity.date
@@ -51,12 +51,12 @@ mixin activity-packery(activity)
 					p.description
 						if activity.subtitle
 							= activity.subtitle
-							|  
+							|
 						if activity.place
-							| @ 
+							| @
 							= activity.place
 						//if activity.location
-							| , 
+							| ,
 							= activity.location
 					p.date
 						if activity.date
@@ -87,10 +87,10 @@ block content
 			each cat in data.categories
 				li(class=data.category && data.category.id == cat.id ? 'active' : '')
 					a(href='/activities/' + cat.key)= cat.name
-			
+
 
 	.container: .row: .col-xs-12
-		
+
 		if filters.category && !data.category
 			h3.text-muted Invalid Category.
 		else
@@ -98,7 +98,7 @@ block content
 				.activities
 					each activity in data.activities.results
 						+activity(activity)
-				
+
 				if data.activities.totalPages > 1
 					.clearfix
 					.pagination-frame
@@ -124,7 +124,7 @@ block content
 
 block js
 	script(src='/js/lib/underscore-min.js')
-	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey + '&sensor=false')
+	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey)
 	script.
 		var activityMarkers = !{JSON.stringify(data.markers)};
 		var MY_MAPTYPE_ID = 'custom_style';
@@ -175,7 +175,7 @@ block js
 			var customMapType = new google.maps.StyledMapType(featureOptions, styledMapOptions);
 
 			map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-			
+
 			_.each(activityMarkers, function(activity) {
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(activity.geo[1], activity.geo[0]),

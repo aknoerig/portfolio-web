@@ -22,15 +22,15 @@ block content
 				p.meta
 					//- if data.activity.category == "Consulting"
 					//- if data.activity.category
-							| A 
-							a(href='/works/' + data.activity.category.key)= data.activity.category.name 
+							| A
+							a(href='/works/' + data.activity.category.key)= data.activity.category.name
 							|  activity
 							br
 					if data.activity.date
-						| on #{data.activity._.date.format('MMMM Do, YYYY')} 
+						| on #{data.activity._.date.format('MMMM Do, YYYY')}
 						br
 					if data.activity.place
-						| at 
+						| at
 						a(href=data.activity.placeLink, target="_blank")= data.activity.place
 						br
 					if data.activity.geoLocation
@@ -38,34 +38,34 @@ block content
 						br
 				if data.activity.link
 					p.link
-						| &rarr; 
+						| &rarr;
 						a(href=data.activity.link, target="_blank")= data.activity._.link.format()
 				p.tags
 					if data.activity.industries && data.activity.industries.length
-						| Industries: 
+						| Industries:
 						each industry, i in data.activity.industries
 							a(href="/tags/"+industry.key)= industry.name
 							if i < data.activity.industries.length - 1
-								|  | 
+								|  |
 							else
 								br
 					if data.activity.technologies && data.activity.technologies.length
-						| Technologies:  
+						| Technologies:
 						each tech, i in data.activity.technologies
 							a(href="/tags/"+tech.key)= tech.name
 							if i < data.activity.technologies.length - 1
-								|  | 
+								|  |
 							else
 								br
 					if data.activity.interactions && data.activity.interactions.length
-						| Interactions:  
+						| Interactions:
 						each interaction, i in data.activity.interactions
 							a(href="/tags/"+interaction.key)= interaction.name
 							if i < data.activity.interactions.length - 1
-								|  | 
+								|  |
 							else
 								br
-					
+
 		.col-sm-7.col-sm-offset-1.col-md-7.col-md-offset-0
 			article
 				if data.activity.keyEmbedCode.exists
@@ -103,7 +103,7 @@ block content
 						each project, i in data.activity.works
 							a(href="/works/project/" + project.slug)= project.title
 							if i < data.activity.works.length - 1
-								| , 
+								| ,
 							else
 
 	#activity-map
@@ -161,11 +161,11 @@ block js
 			});
 
 	script(src='/js/lib/underscore-min.js')
-	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey + '&sensor=false')
+	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey)
 	script.
 		var MY_MAPTYPE_ID = 'custom_style';
 		var activityLatLng = new google.maps.LatLng(
-			!{data.activity.geoLocation.geo[1]}, 
+			!{data.activity.geoLocation.geo[1]},
 			!{data.activity.geoLocation.geo[0]});
 
 		function initialize() {
@@ -214,7 +214,7 @@ block js
 			var customMapType = new google.maps.StyledMapType(featureOptions, styledMapOptions);
 
 			map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-		
+
 			var marker = new google.maps.Marker({
 				position: activityLatLng,
 				map: map,
@@ -224,7 +224,7 @@ block js
 
 			var infowindow = new google.maps.InfoWindow({
 				content: '<div id="marker">'+
-			      '<h5>!{data.activity.geoLocation.name}</h5>' + 
+			      '<h5>!{data.activity.geoLocation.name}</h5>' +
 			      '<p>!{data.activity.geoLocation.suburb}, !{data.activity.geoLocation.country}</p>'+
 			      '</div>'
 			});
