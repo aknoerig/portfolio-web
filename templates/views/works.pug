@@ -11,17 +11,17 @@ mixin project(project)
 mixin project-list(project)
 	.works-project(data-ks-editable=editable(user, { list: 'Project', id: project.id }))
 		h2: a(href='/works/project/' + project.slug)= project.title
-		p.lead.text-muted Posted 
+		p.lead.text-muted Posted
 			if project.publishedDate
-				| on #{project._.publishedDate.format('MMMM Do, YYYY')} 
+				| on #{project._.publishedDate.format('MMMM Do, YYYY')}
 			if project.categories && project.categories.length
-				| in 
+				| in
 				each cat, i in project.categories
 					a(href='/works/' + cat.key)= cat.name
 					if i < project.categories.length - 1
-						| , 
+						| ,
 					else
-						|  
+						|
 			if project.author
 				| by #{project.author.name.first}
 		if project.keyImage.exists
@@ -46,10 +46,10 @@ block content
 			each cat in data.categories
 				li(class=data.category && data.category.id == cat.id ? 'active' : '')
 					a(href='/works/' + cat.key)= cat.name
-			
+
 
 	.container: .row
-		
+
 			if filters.category && !data.category
 				h3.text-muted Invalid Category.
 			else
@@ -57,22 +57,22 @@ block content
 					.works
 						each project in data.projects.results
 							+project(project)
-					
+
 					if data.projects.totalPages > 1
 						.clearfix
 						.pagination-frame
 							ul.pagination
 								if data.projects.previous
-									li: a(href='?page=' + data.projects.previous): &larr;
+									li: a(href='?page=' + data.projects.previous) &larr;
 								else
-									li.disabled: a(href='?page=' + 1): &larr;
+									li.disabled: a(href='?page=' + 1) &larr;
 								each p, i in data.projects.pages
 									li(class=data.projects.currentPage == p ? 'active' : null)
 										a(href='?page=' + (p == '...' ? (i ? data.projects.totalPages : 1) : p ))= p
 								if data.projects.next
-									li: a(href='?page=' + data.projects.next): &rarr;
+									li: a(href='?page=' + data.projects.next) &rarr;
 								else
-									li.disabled: a(href='?page=' + data.projects.totalPages): &rarr;
+									li.disabled: a(href='?page=' + data.projects.totalPages) &rarr;
 				else
 					if data.category
 						h3.text-muted There are no projects in the category #{data.category.name}.
