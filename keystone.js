@@ -32,6 +32,11 @@ keystone.init({
 	'user model': 'User',
 	'cookie secret': 'q!ckvQh`v>ku}}.H[<m@abwXs9?r<g@/f4zdV{d6pyy3IrBoC<]`hvSds$w[N9RW',
 
+	'mongo options': {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	},
+
 	'ga property': process.env.GA_PROPERTY,
 	'ga domain': process.env.GA_DOMAIN
 });
