@@ -35,6 +35,7 @@ keystone.init({
 	'mongo options': {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
+		dbName: 'andreknoerig'
 	},
 
 	'ga property': process.env.GA_PROPERTY,
