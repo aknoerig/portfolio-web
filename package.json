@@ -6,6 +6,7 @@
     "async": "~3.2.4",
     "dotenv": "~16.0.3",
     "keystone": "github:aknoerig/keystone-classic",
+    "lodash": "^4.17.21",
     "moment": "~2.29.4",
     "pug": "~3.0.2",
     "underscore": "~1.13.6"
