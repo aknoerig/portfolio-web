@@ -50,7 +50,6 @@ Copy `.env.example` to `.env`. Required variables:
 | `GOOGLE_API_KEY` | No | Location geocoding on Activity pages |
 | `MANDRILL_API_KEY` | No | Email delivery for contact form enquiries |
 | `GA_PROPERTY` | No | GA4 Measurement ID (format: `G-XXXXXXXXXX`) |
-| `NEW_RELIC_LICENSE_KEY` | No | APM monitoring; agent is inactive unless `require('newrelic')` is added to `keystone.js` |
 
 ## MongoDB
 
