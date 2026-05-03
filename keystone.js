@@ -67,6 +67,8 @@ keystone.init({
 	'wysiwyg cloudinary images': true,
 	'wysiwyg additional buttons': 'formatselect removeformat blockquote',
 
+	'cloudinary secure': true,
+
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -111,7 +113,29 @@ keystone.set('locals', {
 
 keystone.set('routes', require('./routes'));
 
-keystone.pre('routes', helmet());
+keystone.pre('routes', helmet({
+	contentSecurityPolicy: {
+		directives: {
+			...helmet.contentSecurityPolicy.getDefaultDirectives(),
+			'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
+			'script-src': [
+				"'self'",
+				"'unsafe-inline'",
+				'code.jquery.com',
+				'https://maxcdn.bootstrapcdn.com',
+				'https://www.googletagmanager.com',
+				'http://cdn.embed.ly',
+				'https://maps.googleapis.com',
+			],
+			'connect-src': [
+				"'self'",
+				'https://www.google-analytics.com',
+				'https://analytics.google.com',
+				'https://stats.g.doubleclick.net',
+			],
+		},
+	},
+}));
 
 // Setup common locals for your emails. The following are required by Keystone's
 // default email templates, you may remove them if you're using your own.
