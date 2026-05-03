@@ -38,26 +38,59 @@ The Grunt file is kept for historical reference only.
 
 ## Testing
 
-Unit tests cover the Express middleware in `routes/middleware.js` (no database required).
+Three test layers following the test pyramid:
 
 ```sh
-npm test
+npm test          # unit + integration (Jest)
+npm run test:e2e  # end-to-end (Playwright / Chromium)
 ```
 
-Tests live in `test/` and run with Jest. `keystone` is mocked at the module level so the suite
-starts in under a second without a MongoDB connection.
+### Unit tests (`test/middleware.test.js`, `test/views.test.js`)
 
-**What is tested:**
+No database or server required. `keystone` is mocked at the module level so the suite starts in
+under a second.
 
 | File | Coverage |
 |------|---------|
 | `routes/middleware.js` | `initLocals`, `flashMessages`, `requireUser` |
+| `routes/views/index.js` | section local, template name, project slice, empty-DB case |
+| `routes/views/works.js` | section local, template name, category filter, findOne behaviour |
+| `routes/views/contact.js` | section local, enquiry types, GET/POST flow, validation errors |
+| `routes/views/blog.js` | section local, template name, category list, per-category post count |
 
-**What is not tested (yet):**
+`test/views.test.js` uses a `MockView` class that captures event handlers registered with
+`view.on('init' | 'post' | 'render', ...)` and runs them via an async `renderPromise`, so each
+controller can be exercised without a real Keystone `View` instance.
 
-Route view handlers (`routes/views/*.js`) are tightly coupled to Keystone's `View` abstraction.
-Meaningful tests require a live MongoDB connection and Keystone initialisation — integration tests
-are the appropriate vehicle for that layer.
+### Integration tests (`test/integration.test.js`)
+
+Boots the full Keystone + Express stack against an in-memory MongoDB
+([mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server)), then hits it with
+[supertest](https://github.com/ladjs/supertest). No external services required.
+
+Covers: static page routes (200), data-driven routes with an empty DB (200), CSP header presence,
+404 for unknown routes, and POST `/contact` Enquiry creation / missing-field rejection.
+
+All models and view controllers are loaded through Jest's module registry to avoid the
+cross-registry mismatch that `keystone.importer()` causes when running under Jest (it uses
+Node's native `require` in `node_modules/` and ends up with a separate Keystone instance).
+
+### End-to-end tests (`test/e2e/`)
+
+Runs a real browser (Chromium) against a Keystone server started by `test/e2e/server.js` on
+port 3001 with an in-memory MongoDB. Playwright manages the server lifecycle automatically.
+
+```sh
+npm run test:e2e
+```
+
+| Spec | What it checks |
+|------|----------------|
+| `navigation.spec.js` | Brand link, all four nav links, click navigation, active state per page |
+| `pages.spec.js` | Page load status, headings, contact details, 404 for unknown routes |
+
+The E2E server (`test/e2e/server.js`) is a plain Node script — `keystone.import('models')` and
+`require('./routes')` work normally there because it runs outside Jest's module registry.
 
 ## Environment variables
 
