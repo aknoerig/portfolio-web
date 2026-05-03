@@ -30,7 +30,7 @@
     "npm": "9"
   },
   "scripts": {
-    "start": "node keystone.js"
+    "start": "node --preserve-symlinks keystone.js"
   },
   "main": "keystone.js"
 }
