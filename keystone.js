@@ -2,6 +2,11 @@
 // customising the .env file in your project's root folder.
 require('dotenv').config();
 
+if (!process.env.COOKIE_SECRET) {
+	console.error('FATAL: COOKIE_SECRET environment variable is not set. Copy .env.example to .env and fill it in.');
+	process.exit(1);
+}
+
 // Node.js 22+ throws ERR_INVALID_ARG_VALUE from url.parse() for comma-separated
 // hosts (e.g. "mongodb://host1,host2/db"). MongoDB driver 3.x uses url.parse()
 // only as a discard-result validation step before its own HOSTS_RX parser takes
@@ -24,10 +29,26 @@ require('dotenv').config();
 	};
 }());
 
-if (!process.env.COOKIE_SECRET) {
-	console.error('FATAL: COOKIE_SECRET environment variable is not set. Copy .env.example to .env and fill it in.');
-	process.exit(1);
-}
+
+// MongoDB driver emits deprecation warnings for collection.ensureIndex and
+// collection.count. Mongoose's auto-index path uses ensureIndex, and Keystone's
+// paginate/getUniqueValue helpers use count. Redirect both to their replacements
+// before any module requires the driver so NativeCollection's dynamic method
+// lookup picks up the patched prototypes at call time.
+(function patchMongoDeprecations() {
+	var Collection = require('mongodb/lib/collection');
+
+	Collection.prototype.ensureIndex = function (fieldOrSpec, options, callback) {
+		if (typeof options === 'function') { callback = options; options = {}; }
+		return this.createIndex(fieldOrSpec, options || {}, callback);
+	};
+
+	Collection.prototype.count = function (query, options, callback) {
+		if (typeof query === 'function') { callback = query; query = {}; options = {}; }
+		else if (typeof options === 'function') { callback = options; options = {}; }
+		return this.countDocuments(query || {}, options || {}, callback);
+	};
+}());
 
 // Require keystone
 var keystone = require('keystone');
