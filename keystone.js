@@ -117,7 +117,7 @@ keystone.pre('routes', helmet({
 	contentSecurityPolicy: {
 		directives: {
 			...helmet.contentSecurityPolicy.getDefaultDirectives(),
-			'img-src': ["'self'", 'data:', 'https://res.cloudinary.com', 'https://*.googleapis.com', 'https://*.gstatic.com', 'https://i.ytimg.com'],
+			'img-src': ["'self'", 'data:', 'https://res.cloudinary.com', 'https://*.googleapis.com', 'https://*.gstatic.com', 'https://i.ytimg.com', 'https://i.vimeocdn.com'],
 			'frame-src': ["'self'", 'https://cdn.embedly.com'],
 			'script-src': [
 				"'self'",
