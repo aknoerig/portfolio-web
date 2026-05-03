@@ -2,6 +2,28 @@
 // customising the .env file in your project's root folder.
 require('dotenv').config();
 
+// Node.js 22+ throws ERR_INVALID_ARG_VALUE from url.parse() for comma-separated
+// hosts (e.g. "mongodb://host1,host2/db"). MongoDB driver 3.x uses url.parse()
+// only as a discard-result validation step before its own HOSTS_RX parser takes
+// over. Suppress the throw so the driver can continue correctly.
+(function patchUrlParseForMongoMultiHost() {
+	var urlModule = require('url');
+	var orig = urlModule.parse;
+	urlModule.parse = function(urlStr, parseQueryString, slashesDenoteHost) {
+		try {
+			return orig.call(urlModule, urlStr, parseQueryString, slashesDenoteHost);
+		} catch (e) {
+			if (e.code === 'ERR_INVALID_ARG_VALUE' &&
+					typeof urlStr === 'string' &&
+					urlStr.startsWith('mongodb://') &&
+					urlStr.indexOf(',') !== -1) {
+				return {};
+			}
+			throw e;
+		}
+	};
+}());
+
 if (!process.env.COOKIE_SECRET) {
 	console.error('FATAL: COOKIE_SECRET environment variable is not set. Copy .env.example to .env and fill it in.');
 	process.exit(1);
@@ -10,6 +32,19 @@ if (!process.env.COOKIE_SECRET) {
 // Require keystone
 var keystone = require('keystone');
 var helmet = require('helmet');
+
+// Keystone v4 calls toCollectionName(key) without a pluralize function; in
+// Mongoose 5.13+ that returns the key unchanged ('Project' not 'projects').
+// The live Atlas data was written under the lowercase-plural convention, so
+// restore it by passing mongoose.pluralize() when building collection names.
+(function patchPrefixModelPluralization() {
+	var pluralize = keystone.mongoose.pluralize();
+	keystone.prefixModel = function (key) {
+		var modelPrefix = keystone.get('model prefix');
+		if (modelPrefix) key = modelPrefix + '_' + key;
+		return pluralize(key);
+	};
+}());
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
