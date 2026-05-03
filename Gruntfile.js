@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt);
 
 	// Post-process CSS for vendor-specific compatibility
-	var autoprefixer = require('autoprefixer-core');
+	var autoprefixer = require('autoprefixer');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -45,17 +45,9 @@ module.exports = function(grunt) {
 
 		concurrent: {
 			dev: {
-				tasks: ['nodemon', 'node-inspector', 'watch'],
+				tasks: ['nodemon', 'watch'],
 				options: {
 					logConcurrentOutput: true
-				}
-			}
-		},
-
-		'node-inspector': {
-			custom: {
-				options: {
-					'web-host': 'localhost'
 				}
 			}
 		},
@@ -75,7 +67,7 @@ module.exports = function(grunt) {
 	    postcss: {
 	        options: {
 	            processors: [
-	              autoprefixer({ browsers: ['last 2 version'] }).postcss
+	              autoprefixer({ overrideBrowserslist: ['last 2 versions'] })
 	            ]
 	        },
 	        dist: { src: 'public/styles/*.css' }
