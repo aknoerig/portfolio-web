@@ -13,6 +13,7 @@
     "underscore": "^1.13.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "autoprefixer": "^10.5.0",
     "grunt": "^1.6.2",
     "grunt-concurrent": "^3.0.0",
@@ -34,7 +35,8 @@
   },
   "scripts": {
     "start": "node --preserve-symlinks keystone.js",
-    "test": "jest"
+    "test": "jest",
+    "test:e2e": "playwright test"
   },
   "main": "keystone.js"
 }
