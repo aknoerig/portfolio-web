@@ -57,6 +57,10 @@ npx nodemon keystone.js
 
 The Grunt dev toolchain (`grunt serve`) is **broken** on Node 12+ and should not be used. See [dev.md](dev.md) for details.
 
+```sh
+npm test   # unit tests (no database required)
+```
+
 ## Deployment (Heroku)
 
 ```sh

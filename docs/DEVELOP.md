@@ -36,6 +36,29 @@ npx nodemon keystone.js      # auto-restart on file changes
 - `node-inspector` is referenced but not installed
 The Grunt file is kept for historical reference only.
 
+## Testing
+
+Unit tests cover the Express middleware in `routes/middleware.js` (no database required).
+
+```sh
+npm test
+```
+
+Tests live in `test/` and run with Jest. `keystone` is mocked at the module level so the suite
+starts in under a second without a MongoDB connection.
+
+**What is tested:**
+
+| File | Coverage |
+|------|---------|
+| `routes/middleware.js` | `initLocals`, `flashMessages`, `requireUser` |
+
+**What is not tested (yet):**
+
+Route view handlers (`routes/views/*.js`) are tightly coupled to Keystone's `View` abstraction.
+Meaningful tests require a live MongoDB connection and Keystone initialisation — integration tests
+are the appropriate vehicle for that layer.
+
 ## Environment variables
 
 Copy `.env.example` to `.env`. Required variables:
