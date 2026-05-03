@@ -7,9 +7,23 @@
  * module.exports = function(done) { ... }
  */
 
+var crypto = require('crypto');
+
+var adminPassword = process.env.ADMIN_PASSWORD || crypto.randomBytes(20).toString('hex');
+
+if (!process.env.ADMIN_PASSWORD) {
+	console.log('');
+	console.log('========================================================');
+	console.log('First boot: generated admin password: ' + adminPassword);
+	console.log('Log in at /keystone with admin@andreknoerig.de');
+	console.log('Set ADMIN_PASSWORD in .env to use a fixed password.');
+	console.log('========================================================');
+	console.log('');
+}
+
 exports.create = {
 	User: [
-		{ 'name.first': 'Admin', 'name.last': 'User', email: 'admin@andreknoerig.de', password: 'password', isAdmin: true }
+		{ 'name.first': 'Admin', 'name.last': 'User', email: 'admin@andreknoerig.de', password: adminPassword, isAdmin: true }
 	]
 };
 

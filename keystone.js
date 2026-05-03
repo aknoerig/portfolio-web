@@ -2,8 +2,14 @@
 // customising the .env file in your project's root folder.
 require('dotenv').config();
 
+if (!process.env.COOKIE_SECRET) {
+	console.error('FATAL: COOKIE_SECRET environment variable is not set. Copy .env.example to .env and fill it in.');
+	process.exit(1);
+}
+
 // Require keystone
 var keystone = require('keystone');
+var helmet = require('helmet');
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -30,13 +36,18 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': 'q!ckvQh`v>ku}}.H[<m@abwXs9?r<g@/f4zdV{d6pyy3IrBoC<]`hvSds$w[N9RW',
+	'cookie secret': process.env.COOKIE_SECRET,
+	'force ssl': process.env.NODE_ENV === 'production',
 
+	'mongo': process.env.MONGO_URI,
 	'mongo options': {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		dbName: 'andreknoerig'
 	},
+
+	'google api key': process.env.GOOGLE_API_KEY,
+	'embedly api key': process.env.EMBEDLY_API_KEY,
 
 	'ga property': process.env.GA_PROPERTY,
 	'ga domain': process.env.GA_DOMAIN
@@ -64,6 +75,8 @@ keystone.set('locals', {
 // Load your project's Routes
 
 keystone.set('routes', require('./routes'));
+
+keystone.pre('routes', helmet());
 
 // Setup common locals for your emails. The following are required by Keystone's
 // default email templates, you may remove them if you're using your own.

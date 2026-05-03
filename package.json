@@ -5,6 +5,7 @@
   "dependencies": {
     "async": "~3.2.4",
     "dotenv": "~16.0.3",
+    "helmet": "^8.1.0",
     "keystone": "github:aknoerig/keystone-classic",
     "lodash": "^4.17.21",
     "moment": "~2.29.4",
