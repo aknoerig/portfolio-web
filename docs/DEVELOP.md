@@ -16,6 +16,14 @@ dependency. Its postinstall script only supports Mac x64 and fails on Apple Sili
 `--ignore-scripts` skips all postinstall scripts — safe here because we don't run tests from
 the keystone fork and there are no native add-ons that need to compile.
 
+### Node.js 25 compatibility
+
+The engine spec targets Node.js 18. On Node.js 22+, `url.parse()` throws `ERR_INVALID_ARG_VALUE`
+for comma-separated-host URIs. MongoDB driver 3.x generates these internally when resolving a
+`mongodb+srv://` Atlas URI via DNS SRV lookup. A targeted monkey-patch at the top of `keystone.js`
+suppresses the throw so the driver's own regex-based host parser can continue. The patch is safe on
+all Node.js versions — it only activates on `ERR_INVALID_ARG_VALUE` for `mongodb://` multi-host URIs.
+
 ## Running the server
 
 ```sh
