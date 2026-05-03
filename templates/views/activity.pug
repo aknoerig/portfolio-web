@@ -160,15 +160,14 @@ block js
 				});
 			});
 
-	script(src='/js/lib/underscore-min.js')
-	script(src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey)
 	script.
 		var MY_MAPTYPE_ID = 'custom_style';
-		var activityLatLng = new google.maps.LatLng(
-			!{data.activity.geoLocation.geo[1]},
-			!{data.activity.geoLocation.geo[0]});
 
-		function initialize() {
+		function initMap() {
+
+			var activityLatLng = new google.maps.LatLng(
+				!{data.activity.geoLocation.geo[1]},
+				!{data.activity.geoLocation.geo[0]});
 
 			var mapOptions = {
 				center: activityLatLng,
@@ -230,5 +229,4 @@ block js
 			});
 			infowindow.open(map, marker);
 		}
-
-		google.maps.event.addDomListener(window, 'load', initialize);
+	script(async, src='https://maps.googleapis.com/maps/api/js?key=' + mapsApiKey + '&loading=async&callback=initMap')

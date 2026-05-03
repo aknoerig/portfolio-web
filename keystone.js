@@ -117,7 +117,8 @@ keystone.pre('routes', helmet({
 	contentSecurityPolicy: {
 		directives: {
 			...helmet.contentSecurityPolicy.getDefaultDirectives(),
-			'img-src': ["'self'", 'data:', 'https://res.cloudinary.com'],
+			'img-src': ["'self'", 'data:', 'https://res.cloudinary.com', 'https://*.googleapis.com', 'https://*.gstatic.com', 'https://i.ytimg.com'],
+			'frame-src': ["'self'", 'https://cdn.embedly.com'],
 			'script-src': [
 				"'self'",
 				"'unsafe-inline'",
@@ -125,14 +126,18 @@ keystone.pre('routes', helmet({
 				'https://maxcdn.bootstrapcdn.com',
 				'https://www.googletagmanager.com',
 				'http://cdn.embed.ly',
-				'https://maps.googleapis.com',
+				'https://*.googleapis.com',
+				'https://*.gstatic.com',
 			],
 			'connect-src': [
 				"'self'",
 				'https://www.google-analytics.com',
 				'https://analytics.google.com',
 				'https://stats.g.doubleclick.net',
+				'https://*.googleapis.com',
+				'https://*.gstatic.com',
 			],
+			'font-src': ["'self'", 'https://fonts.gstatic.com'],
 		},
 	},
 }));
