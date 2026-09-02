@@ -149,6 +149,44 @@ Grunt PostCSS task that compiled it is broken; to recompile manually after editi
 npx postcss public/styles/site.less --use autoprefixer -o public/styles/site.min.css
 ```
 
+## Docker
+
+```sh
+cp .env.example .env   # fill in COOKIE_SECRET at minimum, as above
+docker compose up --build
+```
+
+This builds the app image (Node 18, production deps only, installed with `--ignore-scripts`
+for the same reason as local setup above) and starts it alongside a `mongo:5` container. The
+compose file overrides `MONGO_URI` to point at the `mongo` service instead of the `.env`
+default of `127.0.0.1`; every other variable comes from `.env`. Mongo data persists in the
+`mongo-data` named volume across restarts.
+
+- **Site:** http://localhost:3000
+- **Admin UI:** http://localhost:3000/keystone
+
+To run just the image against an external database (e.g. Atlas), build and run it directly:
+
+```sh
+docker build -t portfolio-web .
+docker run --env-file .env -e MONGO_URI=<your-uri> -p 3000:3000 portfolio-web
+```
+
+### Convenience scripts
+
+`./scripts/` wraps the common compose commands (they auto-detect `docker compose` vs. the
+standalone `docker-compose` binary):
+
+| Script | Does |
+|--------|------|
+| `docker-up.sh` | `compose up --build -d`, checks `.env` exists first |
+| `docker-down.sh` | `compose down` (keeps the `mongo-data` volume) |
+| `docker-logs.sh [service]` | tails logs, defaults to `app` |
+| `docker-shell.sh` | shell into the running app container |
+| `docker-mongo-shell.sh` | mongo shell on the `andreknoerig` db |
+| `docker-build.sh` | builds the image without starting compose |
+| `docker-reset.sh` | `compose down -v` — **deletes** the mongo-data volume, asks first |
+
 ## Deploying to Heroku
 
 ```sh

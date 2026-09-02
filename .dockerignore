@@ -1,0 +1,26 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies (installed during the image build)
+node_modules
+
+# Environment / secrets — never bake these into an image
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.vscode
+.idea
+.DS_Store
+
+# Test artifacts and tooling not needed at runtime
+test
+test-results
+playwright-report
+playwright.config.js
+Gruntfile.js
+
+# Docs
+docs
